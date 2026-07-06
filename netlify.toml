@@ -1,0 +1,85 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+  included_files = [
+    "api/data-private/*.json",
+    "admin-history.json",
+    "supplier-branding.json"
+  ]
+
+[[redirects]]
+  from = "/api/calcular"
+  to = "/.netlify/functions/calcular"
+  status = 200
+
+[[redirects]]
+  from = "/api/validar"
+  to = "/.netlify/functions/validar"
+  status = 200
+
+[[redirects]]
+  from = "/api/tarifas"
+  to = "/.netlify/functions/tarifas"
+  status = 200
+
+[[redirects]]
+  from = "/api/tarifas-gas"
+  to = "/.netlify/functions/tarifas-gas"
+  status = 200
+
+[[redirects]]
+  from = "/api/comisiones"
+  to = "/.netlify/functions/comisiones"
+  status = 200
+
+[[redirects]]
+  from = "/api/comerciales"
+  to = "/.netlify/functions/comerciales"
+  status = 200
+
+[[redirects]]
+  from = "/api/ajustes"
+  to = "/.netlify/functions/ajustes"
+  status = 200
+
+[[redirects]]
+  from = "/api/extraer-factura"
+  to = "/.netlify/functions/extraer-factura"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/*.ico"
+  [headers.values]
+    Content-Type = "image/x-icon"
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*.json"
+  [headers.values]
+    Content-Type = "application/json"
+    Cache-Control = "public, max-age=0, must-revalidate"

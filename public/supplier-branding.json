@@ -1,0 +1,170 @@
+{
+  "ACCIONA": {
+    "name": "Acciona",
+    "logo": "logos/acciona.png",
+    "primaryColor": "#E60012",
+    "secondaryColor": "#000000",
+    "website": "www.acciona.com",
+    "phone": "900 300 700"
+  },
+  "LOGOS": {
+    "name": "Logos",
+    "logo": "logos/logos.png",
+    "primaryColor": "#1E4B99",
+    "secondaryColor": "#C9A33A",
+    "website": "",
+    "phone": ""
+  },
+  "ENDESA": {
+    "name": "Endesa",
+    "logo": "logos/endesa.png",
+    "primaryColor": "#0066CC",
+    "secondaryColor": "#003D7A",
+    "website": "www.endesa.com",
+    "phone": "800 760 909"
+  },
+  "NATURGY": {
+    "name": "Naturgy",
+    "logo": "logos/naturgy.png",
+    "primaryColor": "#FF9933",
+    "secondaryColor": "#CC7A29",
+    "website": "www.naturgy.es",
+    "phone": "900 100 251"
+  },
+  "EDP": {
+    "name": "EDP Espana",
+    "logo": "logos/edp.png",
+    "primaryColor": "#E2001A",
+    "secondaryColor": "#A80014",
+    "website": "www.edpenergia.es",
+    "phone": "800 100 020"
+  },
+  "TOTALENERGIES": {
+    "name": "TotalEnergies",
+    "logo": "logos/total.png",
+    "primaryColor": "#0056A6",
+    "secondaryColor": "#E60018",
+    "website": "totalenergies.es",
+    "phone": "900 907 132"
+  },
+  "TOTAL ENERGIES": {
+    "name": "TotalEnergies",
+    "logo": "logos/total.png",
+    "primaryColor": "#0056A6",
+    "secondaryColor": "#E60018",
+    "website": "totalenergies.es",
+    "phone": "900 907 132"
+  },
+  "TOTAL RESIDENCIAL": {
+    "name": "TotalEnergies",
+    "logo": "logos/total.png",
+    "primaryColor": "#0056A6",
+    "secondaryColor": "#E60018",
+    "website": "totalenergies.es",
+    "phone": "900 907 132"
+  },
+  "PODO": {
+    "name": "Podo",
+    "logo": "logos/podo.png",
+    "primaryColor": "#00A651",
+    "secondaryColor": "#008542",
+    "website": "www.podo.es",
+    "phone": "900 907 906"
+  },
+  "IGNIS": {
+    "name": "Ignis",
+    "logo": "logos/ignis.png",
+    "primaryColor": "#00A651",
+    "secondaryColor": "#008542",
+    "website": "www.ignis.es",
+    "phone": "900 907 907"
+  },
+  "FACTOR ENERGIA": {
+    "name": "Factor Energia",
+    "logo": "logos/factor-energia.png",
+    "primaryColor": "#00A3E0",
+    "secondaryColor": "#0082B3",
+    "website": "www.factorenergia.com",
+    "phone": "900 850 000"
+  },
+  "LOCALUZ": {
+    "name": "Localuz",
+    "logo": "logos/localuz.png",
+    "primaryColor": "#FF0000",
+    "secondaryColor": "#CC0000",
+    "website": "",
+    "phone": ""
+  },
+  "CANALUZ": {
+    "name": "Canaluz",
+    "logo": "logos/canaluz.png",
+    "primaryColor": "#1597C0",
+    "secondaryColor": "#0F7FA4",
+    "website": "",
+    "phone": ""
+  },
+  "REPSOL": {
+    "name": "Repsol",
+    "logo": "logos/repsol.png",
+    "primaryColor": "#FF6A13",
+    "secondaryColor": "#E35205",
+    "website": "www.repsol.es",
+    "phone": "900 118 866"
+  },
+  "OCTOPUS": {
+    "name": "Octopus Energy",
+    "logo": "logos/octopus.png",
+    "primaryColor": "#FF0099",
+    "secondaryColor": "#CC007A",
+    "website": "octopusenergy.es",
+    "phone": "900 649 104"
+  },
+  "PEPEENERGY": {
+    "name": "Pepeenergy",
+    "logo": "logos/pepeenergy.png",
+    "primaryColor": "#00B4D8",
+    "secondaryColor": "#0090AD",
+    "website": "www.pepeenergy.com",
+    "phone": "910 053 175"
+  },
+  "AUDAX": {
+    "name": "Audax",
+    "logo": "logos/audax.png",
+    "primaryColor": "#00A0E3",
+    "secondaryColor": "#0080B5",
+    "website": "www.audaxenergia.es",
+    "phone": "900 920 000"
+  },
+  "POLARIS": {
+    "name": "Polaris Energy",
+    "logo": "logos/polaris.png",
+    "primaryColor": "#FFD700",
+    "secondaryColor": "#FFA500",
+    "website": "www.polarisenergy.es",
+    "phone": "900 907 908"
+  },
+  "GREENING ENERGY": {
+    "name": "Greening Energy",
+    "logo": "logos/greening.png",
+    "primaryColor": "#00A651",
+    "secondaryColor": "#008542",
+    "website": "www.greening-e.com",
+    "phone": "900 907 909"
+  },
+  "ELEIA": {
+    "name": "Eleia",
+    "logo": "logos/eleia.png",
+    "primaryColor": "#0054A6",
+    "secondaryColor": "#F2C100",
+    "website": "eleia.es",
+    "phone": "900 000 000"
+  },
+  "LOVILUZ": {
+    "name": "Loviluz",
+    "logo": "logo.webp",
+    "primaryColor": "#F97316",
+    "secondaryColor": "#C2410C",
+    "website": "",
+    "phone": ""
+  }
+}

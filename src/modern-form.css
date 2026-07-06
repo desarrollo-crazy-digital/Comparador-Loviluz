@@ -1,0 +1,41 @@
+
+/* Modern CSS for Dashboard Form */
+.modern-input {
+    @apply w-full px-4 py-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 text-sm transition-all duration-200 focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none hover:border-slate-300;
+}
+.modern-label {
+    @apply block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide;
+}
+.section-card {
+    @apply bg-white rounded-xl shadow-sm border border-slate-100 p-5 mb-4 relative overflow-hidden;
+}
+.section-title {
+    @apply flex items-center gap-2 text-sm font-bold text-slate-800 mb-4 pb-2 border-b border-slate-50;
+}
+.grid-cols-custom {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+/* No Scroll Helper */
+.no-scroll {
+    overflow: hidden;
+}
+/* Toggle Switch */
+.toggle-checkbox:checked {
+    right: 0;
+    border-color: #3b82f6;
+}
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #3b82f6;
+}
+
+/* iPad Pro: keep "tablet" layout (avoid 3-column desktop grid) */
+@media (hover: none) and (pointer: coarse) and (min-width: 1024px) and (max-width: 1366px) {
+    .comparador-form-grid > .comparador-form-panel {
+        grid-column: 1 / -1 !important;
+    }
+}
+
+@keyframes shimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+}

@@ -1,0 +1,11 @@
+{
+  "OSCARGESTORENERGIA": {
+    "role": "secretario",
+    "parentAgent": "GesEneEsp346"
+  },
+  "SanLarAnd": {
+    "role": "subagente",
+    "parentAgent": "OnsPart218",
+    "subagentPercent": 0.85
+  }
+}

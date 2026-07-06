@@ -1,0 +1,11 @@
+[
+  {
+    "date": "2026-05-13T11:53:07.147Z",
+    "editor": "Miguel Delgado",
+    "notes": "Cambios en Polaris optima y premium, apagado de repsol.",
+    "changedFiles": [
+      "tarifas.v2.json"
+    ],
+    "affectedSuppliers": []
+  }
+]

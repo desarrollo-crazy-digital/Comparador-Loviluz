@@ -1,0 +1,18 @@
+# tarifas*.json
+# comisiones*.json
+# comerciales*.json
+api/data/*
+api/data-private/*
+!api/data-private/tarifas.v2.min.json
+!api/data-private/comisiones.min.json
+!api/data-private/comerciales.min.json
+!api/data-private/tarifas-gas.v2.min.json
+!api/data-private/ajustes.json
+!api/data-private/tarifas.v2.json
+!api/data-private/comisiones.json
+!api/data-private/comerciales.json
+!api/data-private/tarifas-gas.v2.json
+!api/data-private/comerciales.info.json
+node_modules
+# build.js
+# server.js

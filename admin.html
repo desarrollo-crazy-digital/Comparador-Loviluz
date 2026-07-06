@@ -1,0 +1,2675 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Espacio Vivivan</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDZL3F61E2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GDZL3F61E2');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        min-height: 100vh;
+        color: #1e293b;
+        background-color: #0f172a;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* ═══════════════════════════════════
+         LOGIN SCREEN
+         ═══════════════════════════════════ */
+      .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      }
+
+      .login-box {
+        background: rgba(30, 41, 59, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 48px 40px;
+        border-radius: 20px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.05);
+        border: 1px solid rgba(148, 163, 184, 0.15);
+        width: 100%;
+        max-width: 420px;
+        color: white;
+      }
+
+      .login-box h1 {
+        color: #f8fafc;
+        margin-bottom: 8px;
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        background: linear-gradient(135deg, #f8fafc, #94a3b8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .login-box p {
+        color: #94a3b8;
+        margin-bottom: 28px;
+        font-size: 0.9rem;
+        font-weight: 400;
+      }
+
+      .login-box input {
+        width: 100%;
+        padding: 13px 16px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 10px;
+        font-size: 0.9rem;
+        margin-bottom: 14px;
+        background: rgba(15, 23, 42, 0.6);
+        color: white;
+        transition: all 0.2s ease;
+        font-family: inherit;
+      }
+
+      .login-box input::placeholder { color: #64748b; }
+      .login-box input:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15), 0 0 20px rgba(59, 130, 246, 0.1);
+        background: rgba(15, 23, 42, 0.8);
+      }
+
+      .login-box button {
+        width: 100%;
+        padding: 13px;
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        font-family: inherit;
+        letter-spacing: 0.3px;
+      }
+      .login-box button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(59, 130, 246, 0.35);
+        background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      }
+      .login-box button:active {
+        transform: translateY(0);
+      }
+      .login-error {
+        color: #fca5a5;
+        font-size: 0.85rem;
+        margin-bottom: 14px;
+        display: none;
+        padding: 10px 14px;
+        background: rgba(220, 38, 38, 0.1);
+        border-radius: 8px;
+        border: 1px solid rgba(220, 38, 38, 0.2);
+      }
+      .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #64748b;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.2s;
+      }
+      .back-link:hover { color: #94a3b8; }
+
+      /* ═══════════════════════════════════
+         ADMIN CONTAINER — MAIN SHELL
+         ═══════════════════════════════════ */
+      .admin-container {
+        display: none;
+        height: 100vh;
+        overflow: hidden;
+        background: #eef2f7;
+        flex-direction: row;
+      }
+
+      /* ═══════════════════════════════════
+         SIDEBAR — DARK PREMIUM NAVIGATION
+         ═══════════════════════════════════ */
+      .sidebar {
+        background: linear-gradient(195deg, #1e293b 0%, #0f172a 100%) !important;
+        border-right: 1px solid rgba(148, 163, 184, 0.08) !important;
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+      }
+      .sidebar h1 {
+        color: #f1f5f9 !important;
+        font-size: 1.15rem !important;
+        font-weight: 800 !important;
+        letter-spacing: -0.03em !important;
+      }
+
+      .tabs { gap: 3px; }
+
+      .tab {
+        padding: 9px 14px;
+        background: transparent;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.84rem;
+        font-weight: 500;
+        cursor: pointer;
+        color: #94a3b8;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        text-align: left;
+      }
+
+      .tab:hover {
+        background: rgba(148, 163, 184, 0.08);
+        color: #e2e8f0;
+      }
+      
+      .tab.active {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.08));
+        color: #60a5fa;
+        box-shadow: inset 3px 0 0 #3b82f6;
+        border-radius: 0 8px 8px 0;
+      }
+      
+      .tab svg { transition: all 0.2s ease; }
+      .tab.active svg { stroke: #60a5fa; }
+      .tab:hover svg { stroke: #e2e8f0; }
+
+      /* ═══════════════════════════════════
+         BUTTONS — REFINED & ELEVATED
+         ═══════════════════════════════════ */
+      .btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        letter-spacing: 0.2px;
+        font-family: inherit;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        color: white;
+        border: none;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25), 0 1px 2px rgba(0,0,0,0.1);
+      }
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #60a5fa, #3b82f6);
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+        transform: translateY(-1px);
+      }
+      .btn-primary:active { transform: translateY(0); }
+      
+      .btn-secondary {
+        background: #ffffff;
+        color: #475569;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      }
+      .btn-secondary:hover {
+        background: #f8fafc;
+        border-color: #cbd5e1;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        transform: translateY(-1px);
+      }
+      .btn-secondary:active { transform: translateY(0); }
+
+      /* ═══════════════════════════════════
+         TOP HEADER — SLEEK CONTEXT BAR
+         ═══════════════════════════════════ */
+      .top-header {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      /* ═══════════════════════════════════
+         CONTENT AREA
+         ═══════════════════════════════════ */
+      .admin-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 24px 28px;
+        background: #eef2f7;
+      }
+      /* Toggle switch activo */
+      .activo-toggle { position: relative; display: inline-block; width: 36px; height: 20px; cursor: pointer; }
+      .activo-toggle input { opacity: 0; width: 0; height: 0; }
+      .activo-slider { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: #cbd5e1; border-radius: 20px; transition: 0.2s; }
+      .activo-slider:before { content: ''; position: absolute; height: 14px; width: 14px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.2s; }
+      .activo-toggle input:checked + .activo-slider { background: #22c55e; }
+      .activo-toggle input:checked + .activo-slider:before { transform: translateX(16px); }
+      /* Supplier card visibilidad */
+      .supplier-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; transition: border-color 0.2s; }
+      .supplier-card:hover { border-color: #cbd5e1; }
+      .supplier-card.inactive { opacity: 0.55; }
+      .supplier-card .supplier-info { flex: 1; }
+      .supplier-card .supplier-name { font-weight: 700; font-size: 0.95rem; color: #0f172a; }
+      .supplier-card .supplier-meta { font-size: 0.78rem; color: #64748b; margin-top: 3px; }
+      /* Custom scrollbar */
+      .admin-content::-webkit-scrollbar { width: 6px; }
+      .admin-content::-webkit-scrollbar-track { background: transparent; }
+      .admin-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+      .admin-content::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+      .tab-content {
+        display: none;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 28px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        animation: fadeIn 0.25s ease;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .tab-content.active { display: block; }
+      .tab-content h2 {
+        color: #0f172a;
+        margin-bottom: 6px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .tab-content .subtitle {
+        color: #64748b;
+        margin-bottom: 20px;
+        font-size: 0.82rem;
+      }
+
+      /* ═══════════════════════════════════
+         SEARCH BAR — REFINED
+         ═══════════════════════════════════ */
+      .search-bar {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .search-bar input,
+      .search-bar select {
+        padding: 9px 14px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 0.84rem;
+        min-width: 200px;
+        background: #f8fafc;
+        color: #1e293b;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
+        transition: all 0.2s ease;
+        font-family: inherit;
+      }
+
+      .search-bar input:focus,
+      .search-bar select:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), inset 0 1px 2px rgba(0,0,0,0.02);
+        background: #ffffff;
+      }
+
+      /* ═══════════════════════════════════
+         TABLES — PREMIUM DATA GRID
+         ═══════════════════════════════════ */
+      .table-container {
+        overflow-x: auto;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        max-height: 68vh;
+        background: #ffffff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: 0.84rem;
+      }
+
+      th {
+        background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+        padding: 11px 14px;
+        text-align: left;
+        font-weight: 600;
+        color: #475569;
+        border-bottom: 2px solid #e2e8f0;
+        white-space: nowrap;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+      }
+
+      td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #f1f5f9;
+        color: #334155;
+        transition: background 0.15s ease;
+      }
+      tr:nth-child(even) td { background: #fafbfc; }
+      tr:hover td { background: #eff6ff; }
+
+      td input {
+        width: 100%;
+        min-width: 80px;
+        padding: 7px 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        font-size: 0.84rem;
+        background: #f8fafc;
+        transition: all 0.2s ease;
+        font-family: 'Inter', monospace;
+        color: #334155;
+      }
+
+      td input:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        background: #ffffff;
+      }
+      td input.modified {
+        background: linear-gradient(135deg, #fef3c7, #fef9c3);
+        border-color: #fbbf24;
+        color: #92400e;
+        font-weight: 600;
+      }
+
+      .comercializadora-name {
+        font-weight: 600;
+        color: #0f172a;
+        white-space: nowrap;
+      }
+      .producto-name {
+        color: #475569;
+        max-width: 200px;
+      }
+
+      .delete-btn {
+        background: rgba(239, 68, 68, 0.06);
+        color: #dc2626;
+        border: 1px solid rgba(239, 68, 68, 0.15);
+        padding: 6px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.78rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      }
+      .delete-btn:hover {
+        background: rgba(239, 68, 68, 0.12);
+        border-color: rgba(239, 68, 68, 0.3);
+        transform: translateY(-1px);
+      }
+
+      /* ═══════════════════════════════════
+         STATUS BAR
+         ═══════════════════════════════════ */
+      .status-bar {
+        background: #ffffff;
+        padding: 10px 28px;
+        border-top: 1px solid #e2e8f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.78rem;
+        color: #94a3b8;
+        flex-shrink: 0;
+      }
+      .status-bar .changes { color: #f59e0b; font-weight: 600; }
+      .status-bar .saved { color: #10b981; }
+
+      /* ═══════════════════════════════════
+         MODALS — GLASSMORPHISM
+         ═══════════════════════════════════ */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .modal-overlay.active { display: flex; }
+
+      .modal-box {
+        background: white;
+        padding: 32px;
+        border-radius: 16px;
+        width: 90%;
+        max-width: 480px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0,0,0,0.03);
+        animation: modalIn 0.25s ease;
+      }
+      @keyframes modalIn {
+        from { opacity: 0; transform: translateY(10px) scale(0.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      .modal-box h2 {
+        color: #0f172a;
+        margin-bottom: 20px;
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+      .modal-box label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 500;
+        color: #475569;
+        font-size: 0.85rem;
+      }
+      .modal-box input,
+      .modal-box textarea {
+        width: 100%;
+        padding: 11px 14px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        margin-bottom: 14px;
+        transition: all 0.2s ease;
+        font-family: inherit;
+        background: #f8fafc;
+      }
+      .modal-box textarea { min-height: 90px; resize: vertical; }
+      .modal-box input:focus,
+      .modal-box textarea:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        background: #fff;
+      }
+      .modal-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: 8px;
+      }
+
+      /* ═══════════════════════════════════
+         LOADING — REFINED
+         ═══════════════════════════════════ */
+      .loading-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(15, 23, 42, 0.5);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        justify-content: center;
+        align-items: center;
+        z-index: 1001;
+      }
+      .loading-overlay.active { display: flex; }
+
+      .loading-box {
+        background: white;
+        padding: 36px 48px;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      }
+
+      .spinner {
+        width: 36px;
+        height: 36px;
+        border: 3px solid #e2e8f0;
+        border-top-color: #3b82f6;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 0 auto 14px;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+
+      /* ═══════════════════════════════════
+         TOAST — ELEVATED
+         ═══════════════════════════════════ */
+      .toast {
+        position: fixed;
+        bottom: 60px;
+        right: 24px;
+        padding: 14px 22px;
+        border-radius: 10px;
+        color: white;
+        font-weight: 500;
+        font-size: 0.85rem;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 1002;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      }
+      .toast.show { transform: translateY(0); opacity: 1; }
+      .toast.success { background: linear-gradient(135deg, #10b981, #059669); }
+      .toast.error { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+      /* ═══════════════════════════════════
+         HISTORY LIST
+         ═══════════════════════════════════ */
+      .history-list { max-height: 300px; overflow-y: auto; }
+      .history-item {
+        padding: 14px;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 0.85rem;
+        transition: background 0.15s ease;
+      }
+      .history-item:hover { background: #f8fafc; }
+      .history-item:last-child { border-bottom: none; }
+      .history-item .date { color: #94a3b8; font-size: 0.78rem; }
+      .history-item .editor { color: #0f172a; font-weight: 600; }
+      .history-item .notes { color: #475569; margin-top: 4px; }
+
+      /* ═══════════════════════════════════
+         RESPONSIVE
+         ═══════════════════════════════════ */
+      @media (max-width: 768px) {
+        .sidebar { display: none !important; }
+        .admin-content { padding: 16px; }
+        .search-bar { flex-direction: column; }
+        .search-bar input, .search-bar select { width: 100%; min-width: auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Login -->
+    <div class="login-container" id="loginScreen">
+      <div class="login-box">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h1 style="margin-bottom: 4px;">Espacio Vivivan</h1>
+          <p style="margin-bottom: 0;">Panel de gestión del comparador energético</p>
+        </div>
+        <div class="login-error" id="loginError">Contraseña incorrecta</div>
+        <input
+          type="text"
+          id="editorNameInput"
+          placeholder="Tu nombre (editor)"
+        />
+        <input
+          type="password"
+          id="passwordInput"
+          placeholder="Contraseña"
+          onkeypress="if (event.key === 'Enter') login();"
+        />
+        <button onclick="login()">Acceder</button>
+        <a href="index.html" class="back-link"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          Volver al comparador</a
+        >
+      </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <!-- Admin Panel -->
+    <div class="admin-container" id="adminPanel">
+        
+      <!-- Sidebar -->
+      <aside class="sidebar" style="width: 260px; min-width: 260px; background: white; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; z-index: 50;">
+        <div style="padding: 24px 20px;">
+          <h1 style="color: #0f172a; font-size: 1.25rem; font-weight: 800; letter-spacing: -0.05em; display: flex; align-items: center; gap: 8px;">
+            Espacio Vivivan
+          </h1>
+        </div>
+        
+        <div class="sidebar-nav" style="padding: 12px; display: flex; flex-direction: column; overflow-y: auto; flex: 1;">
+           <div class="tabs">
+               <div style="font-size: 0.7rem; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; padding: 8px 14px; margin-top: 4px;">Tarifas Eléctricas</div>
+               
+               <button class="tab active" data-tab="tarifas-20TD" onclick="showTab('tarifas-20TD', this)">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                 Tarifas 2.0TD
+               </button>
+               <button class="tab" data-tab="tarifas-30TD" onclick="showTab('tarifas-30TD', this)">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                 Tarifas 3.0TD
+               </button>
+               <button class="tab" data-tab="tarifas-61TD" onclick="showTab('tarifas-61TD', this)">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                 Tarifas 6.1TD
+               </button>
+               
+               <div style="font-size: 0.7rem; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; padding: 16px 14px 8px;">Otras Tarifas</div>
+               
+               <button class="tab" data-tab="tarifas-gas" onclick="showTab('tarifas-gas', this)">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px"><path d="M12 2s4 2 4 6-4 6-4 10-4-2-4-6 4-6 4-10z"></path></svg>
+                 Tarifas Gas
+               </button>
+               <button class="tab" data-tab="actualizar-tarifas" onclick="showTab('actualizar-tarifas', this)">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                 Impor. Automático
+               </button>
+    
+               <div style="font-size: 0.7rem; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; padding: 16px 14px 8px;">Red Comercial</div>
+               
+               <button class="tab" data-tab="comisiones" onclick="showTab('comisiones', this)">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px"><path d="M12 2C9.24 2 7 4.24 7 7c0 3.87 5 9 5 9s5-5.13 5-9c0-2.76-2.24-5-5-5z"></path><path d="M12 11v6"></path></svg>
+                 Reglas Comisiones
+               </button>
+               <button class="tab" data-tab="comerciales" onclick="showTab('comerciales', this)">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px"><circle cx="12" cy="7" r="4"></circle><path d="M5.5 21a6.5 6.5 0 0 1 13 0"></path></svg>
+                 Comerciales
+               </button>
+               <button class="tab" data-tab="visibilidad" onclick="showTab('visibilidad', this)">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                 Visibilidad
+               </button>
+           </div>
+        </div>
+        
+        <div style="padding: 20px; border-top: 1px solid rgba(148, 163, 184, 0.1);">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+              <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #3b82f6, #6366f1); border-radius: 8px; display: flex; justify-content: center; align-items: center; font-weight: 700; color: white; font-size: 0.85rem;">A</div>
+              <div>
+                <div style="font-weight: 600; color: #f1f5f9; font-size: 0.85rem;" id="currentEditor">Admin</div>
+                <div style="font-size: 0.72rem; color: #64748b;">Gestor del Comparador</div>
+              </div>
+            </div>
+            <button onclick="logout()" style="width: 100%; background: rgba(148, 163, 184, 0.06); border: 1px solid rgba(148, 163, 184, 0.12); padding: 8px; border-radius: 8px; cursor: pointer; color: #94a3b8; font-weight: 500; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; font-family: inherit;" onmouseover="this.style.background='rgba(148,163,184,0.12)';this.style.color='#e2e8f0'" onmouseout="this.style.background='rgba(148,163,184,0.06)';this.style.color='#94a3b8'">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              Cerrar sesión
+            </button>
+        </div>
+      </aside>
+
+      <!-- Main Panel Area -->
+      <main class="main-panel" style="flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; background: #eef2f7;">
+        
+        <!-- Header -->
+        <header class="top-header" style="height: 56px; min-height: 56px; background: white; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; padding: 0 28px; z-index: 40; flex-shrink: 0;">
+           <div style="display: flex; align-items: center; gap: 12px;">
+              <h2 id="top-title" style="font-size: 1.15rem; font-weight: 700; color: #0f172a; letter-spacing: -0.01em;">Gestión de Precios Eléctricos</h2>
+           </div>
+           
+           <div class="header-actions" style="display: flex; align-items: center; gap: 12px;">
+             <!-- Quick actions -->
+             <a href="index.html" class="btn btn-secondary" style="padding: 6px 12px;">
+               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V9.5z"></path></svg> 
+               Visitar Comparador
+             </a>
+             <button class="btn btn-secondary" onclick="showHistory()" style="padding: 6px 12px;">
+               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 
+               Actividad
+             </button>
+             <div style="width: 1px; height: 24px; background: #e2e8f0; margin: 0 4px;"></div>
+             <button class="btn btn-primary" onclick="openSaveModal()" id="saveBtn" style="padding: 8px 16px; border-radius: 8px;">
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline></svg>
+               Publicar Cambios
+             </button>
+           </div>
+        </header>
+
+        <!-- Content Inner Area -->
+        <div class="admin-content">
+
+        <!-- 2.0TD -->
+        <div class="tab-content active" id="tarifas-20TD">
+          <h2>Tarifas Electricidad 2.0TD</h2>
+          <p class="subtitle">
+            Edita los precios de energía (€/kWh) y potencia (€/kW/año)
+          </p>
+          <div class="search-bar">
+            <input
+              type="text"
+              id="search-20TD"
+              placeholder="Buscar..."
+              oninput="filterTable('20TD')"
+            />
+          </div>
+          <div class="table-container">
+            <table id="table-20TD">
+              <thead>
+                <tr>
+                  <th>On/Off</th>
+                  <th>Comercializadora</th>
+                  <th>Producto</th>
+                  <th>P1 Energía</th>
+                  <th>P2 Energía</th>
+                  <th>P3 Energía</th>
+                  <th>P1 Potencia</th>
+                  <th>P2 Potencia</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3.0TD -->
+        <div class="tab-content" id="tarifas-30TD">
+          <h2>Tarifas Electricidad 3.0TD</h2>
+          <p class="subtitle">
+            Edita los precios de energía y potencia por periodo
+          </p>
+          <div class="search-bar">
+            <input
+              type="text"
+              id="search-30TD"
+              placeholder="Buscar..."
+              oninput="filterTable('30TD')"
+            />
+          </div>
+          <div class="table-container">
+            <table id="table-30TD">
+              <thead>
+                <tr>
+                  <th>On/Off</th>
+                  <th>Comercializadora</th>
+                  <th>Producto</th>
+                  <th>P1E</th>
+                  <th>P2E</th>
+                  <th>P3E</th>
+                  <th>P4E</th>
+                  <th>P5E</th>
+                  <th>P6E</th>
+                  <th>P1P</th>
+                  <th>P2P</th>
+                  <th>P3P</th>
+                  <th>P4P</th>
+                  <th>P5P</th>
+                  <th>P6P</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 6.1TD -->
+        <div class="tab-content" id="tarifas-61TD">
+          <h2>Tarifas Electricidad 6.1TD</h2>
+          <p class="subtitle">
+            Edita los precios de energía y potencia por periodo
+          </p>
+          <div class="search-bar">
+            <input
+              type="text"
+              id="search-61TD"
+              placeholder="Buscar..."
+              oninput="filterTable('61TD')"
+            />
+          </div>
+          <div class="table-container">
+            <table id="table-61TD">
+              <thead>
+                <tr>
+                  <th>On/Off</th>
+                  <th>Comercializadora</th>
+                  <th>Producto</th>
+                  <th>P1E</th>
+                  <th>P2E</th>
+                  <th>P3E</th>
+                  <th>P4E</th>
+                  <th>P5E</th>
+                  <th>P6E</th>
+                  <th>P1P</th>
+                  <th>P2P</th>
+                  <th>P3P</th>
+                  <th>P4P</th>
+                  <th>P5P</th>
+                  <th>P6P</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Gas -->
+        <div class="tab-content" id="tarifas-gas">
+          <h2>Tarifas Gas</h2>
+          <p class="subtitle">Edita los precios de gas por peaje</p>
+          <div class="search-bar">
+            <input
+              type="text"
+              id="search-gas"
+              placeholder="Buscar..."
+              oninput="filterTable('gas')"
+            />
+          </div>
+          <div class="table-container">
+            <table id="table-gas">
+              <thead>
+                <tr>
+                  <th>On/Off</th>
+                  <th>Comercializadora</th>
+                  <th>Producto</th>
+                  <th>Peaje</th>
+                  <th>Fijo (€/día)</th>
+                  <th>Variable (€/kWh)</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Actualizar Tarifas -->
+        <div class="tab-content" id="actualizar-tarifas">
+          <h2>📤 Actualizar Tarifas desde PDF/Excel</h2>
+          <p class="subtitle">Sube uno o varios documentos con nuevas tarifas. Loviluz OFICINAS puede reemplazar tarifas y comisiones desde el Excel.</p>
+          
+          <div style="border: 2px dashed #cbd5e1; border-radius: 12px; padding: 48px 24px; text-align: center; margin-bottom: 24px; background: #f8fafc;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 16px;">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <div style="margin-bottom: 16px; color: #475569; font-size: 1rem;">Selecciona uno o varios archivos PDF o Excel con las nuevas tarifas</div>
+            <input 
+              type="file" 
+              id="tarifasFileInput" 
+              accept=".pdf,.xlsx,.xls" 
+              multiple
+              style="display: none;"
+              onchange="handleTarifasFileSelect()"
+            />
+            <button class="btn btn-primary" onclick="document.getElementById('tarifasFileInput').click()" style="margin-right: 12px;">Seleccionar archivos</button>
+            <button class="btn btn-secondary" onclick="uploadTarifasFile()" id="analyzeBtn" disabled>Analizar tarifas</button>
+            <div id="selectedFileName" style="margin-top: 12px; color: #64748b; font-size: 0.9rem;"></div>
+          </div>
+
+          <!-- Preview de cambios -->
+          <div id="tarifasPreview" style="display:none; margin-bottom: 24px;">
+            <h3 style="color: #1e3a5f; margin-bottom: 12px;">✅ Cambios detectados</h3>
+            <div class="table-container" style="max-height: 400px;">
+              <table id="table-tarifa-preview">
+                <thead>
+                  <tr>
+                    <th style="min-width: 40px;"><input type="checkbox" id="select-all-changes" onchange="toggleAllChanges(this.checked)"></th>
+                    <th>Comercializadora</th>
+                    <th>Producto</th>
+                    <th>Tipo</th>
+                    <th>Campo</th>
+                    <th>Actual</th>
+                    <th>Nuevo</th>
+                    <th>Δ%</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            
+            <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;">
+              <button class="btn btn-secondary" onclick="cancelTarifaUpdates()">Cancelar</button>
+              <button class="btn btn-primary" onclick="applyTarifaUpdates()">Aplicar cambios seleccionados</button>
+            </div>
+          </div>
+
+          <!-- Tarifas no encontradas -->
+          <div id="tarifasNotFound" style="display:none;">
+            <h3 style="color: #d97706; margin-bottom: 12px;">⚠️ Tarifas no encontradas en base de datos</h3>
+            <div style="background: #fef3c7; border: 1px solid #fbbf24; border-radius: 8px; padding: 16px;">
+              <p style="margin-bottom: 12px; color: #92400e;">Las siguientes tarifas aparecen en el documento pero no existen en la base de datos. No serán creadas:</p>
+              <ul id="notFoundList" style="color: #78350f; margin-left: 20px;"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comisiones -->
+        <div class="tab-content" id="comisiones">
+          <h2>Comisiones</h2>
+          <p class="subtitle">Edita las comisiones por rango de consumo</p>
+          <div class="search-bar">
+            <input
+              type="text"
+              id="search-comisiones"
+              placeholder="Buscar..."
+              oninput="filterTable('comisiones')"
+            />
+            <select
+              id="filter-tarifa-comision"
+              onchange="filterTable('comisiones')"
+            >
+              <option value="">Todas las tarifas</option>
+              <option value="2.0TD">2.0TD</option>
+              <option value="3.0TD">3.0TD</option>
+              <option value="6.1TD">6.1TD</option>
+            </select>
+          </div>
+          <div class="table-container">
+            <table id="table-comisiones">
+              <thead>
+                <tr>
+                  <th>Comercializadora</th>
+                  <th>Tarifa</th>
+                  <th>Producto</th>
+                  <th>Rango kWh</th>
+                  <th>Comisión €</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Comerciales -->
+        <div class="tab-content" id="comerciales">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <div>
+              <h2 style="margin-bottom:4px;">Red Comercial</h2>
+              <p class="subtitle" style="margin-bottom:0;">Gestiona comerciales, secretarios y sub-agentes</p>
+            </div>
+            <button class="btn btn-primary" onclick="openAddCommercialModal()" style="white-space:nowrap;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Nuevo usuario
+            </button>
+          </div>
+          <div style="margin-bottom:16px;">
+            <input type="text" id="search-comerciales" placeholder="Buscar por nombre o código..." oninput="renderComercialesTable()" style="width:100%;max-width:360px;padding:9px 14px;border:1px solid #e2e8f0;border-radius:8px;font-size:0.84rem;background:#f8fafc;font-family:inherit;transition:all 0.2s;" onfocus="this.style.borderColor='#3b82f6';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)';this.style.background='#fff'" onblur="this.style.borderColor='#e2e8f0';this.style.boxShadow='none';this.style.background='#f8fafc'" />
+            <span id="comerciales-count" style="margin-left:12px;font-size:0.78rem;color:#94a3b8;"></span>
+          </div>
+          <div id="comerciales-list" style="display:flex;flex-direction:column;gap:1px;background:#e2e8f0;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;max-height:68vh;overflow-y:auto;"></div>
+        </div>
+
+        <!-- Visibilidad -->
+        <div class="tab-content" id="visibilidad">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <div>
+              <h2 style="margin-bottom:4px;">Visibilidad Global</h2>
+              <p class="subtitle" style="margin-bottom:0;">Activa o desactiva comercializadoras y productos para todos los agentes</p>
+            </div>
+            <div style="display:flex;gap:10px;">
+              <button class="btn btn-secondary" onclick="renderVisibilidad()" style="white-space:nowrap;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                Actualizar
+              </button>
+            </div>
+          </div>
+          <div id="visibilidad-content" style="display:flex;flex-direction:column;gap:24px;">
+            <div style="color:#94a3b8;text-align:center;padding:40px;">Cargando...</div>
+          </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="tab-content" id="estadisticas" style="background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 24px;
+              padding-bottom: 16px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            "
+          >
+            <div>
+              <h2 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #1e3a8a, #3b82f6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px;">Rendimiento Comercial</h2>
+              <p class="subtitle" style="margin-bottom: 0; font-size: 0.95rem;">Monitorización de KPIs, conversiones y valor generado</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <select
+                  id="stats-commercial-filter"
+                  onchange="renderStats()"
+                  style="min-width: 240px; font-weight: 500; font-size: 0.9rem; padding: 10px 16px; border-radius: 10px; border: 1px solid #e2e8f0; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.02); outline: none;"
+                >
+                  <option value="all">Filtro: Todos los Comerciales</option>
+                </select>
+                <button
+                  onclick="cleanupStatsByDate()"
+                  style="padding: 10px 16px; background: white; border: 1px solid #e2e8f0; border-radius: 10px; font-weight: 600; font-size: 0.9rem; color: #475569; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s;"
+                  onmouseover="this.style.background='#f8fafc'; this.style.borderColor='#cbd5e1'"
+                  onmouseout="this.style.background='white'; this.style.borderColor='#e2e8f0'"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                  Limpiar
+                </button>
+            </div>
+          </div>
+
+          <!-- KPIs -->
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 20px;
+              margin-bottom: 32px;
+            "
+          >
+            <!-- KPI 1 -->
+            <div
+              style="
+                background: white;
+                border-radius: 16px;
+                padding: 24px;
+                border: 1px solid rgba(226, 232, 240, 0.8);
+                box-shadow: 0 10px 25px rgba(15, 23, 42, 0.03);
+                position: relative;
+                overflow: hidden;
+              "
+            >
+              <div style="position: absolute; top: -10px; right: -10px; opacity: 0.03;">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                  <div style="width: 40px; height: 40px; border-radius: 10px; background: #eff6ff; color: #3b82f6; display: flex; align-items: center; justify-content: center;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  </div>
+                  <div style="font-size: 0.9rem; font-weight: 600; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase;">Estudios Completados</div>
+              </div>
+              <div id="kpi-comparisons" style="font-size: 3rem; font-weight: 800; color: #0f172a; line-height: 1;">-</div>
+            </div>
+
+            <!-- KPI 2 -->
+            <div
+              style="
+                background: white;
+                border-radius: 16px;
+                padding: 24px;
+                border: 1px solid rgba(226, 232, 240, 0.8);
+                box-shadow: 0 10px 25px rgba(15, 23, 42, 0.03);
+                position: relative;
+                overflow: hidden;
+              "
+            >
+              <div style="position: absolute; top: -10px; right: -10px; opacity: 0.03;">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                  <div style="width: 40px; height: 40px; border-radius: 10px; background: #f0fdf4; color: #22c55e; display: flex; align-items: center; justify-content: center;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  </div>
+                  <div style="font-size: 0.9rem; font-weight: 600; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase;">Contratos Finalizados (PDF)</div>
+              </div>
+              <div id="kpi-downloads" style="font-size: 3rem; font-weight: 800; color: #0f172a; line-height: 1;">-</div>
+            </div>
+
+            <!-- KPI 3 -->
+            <div
+              style="
+                background: white;
+                border-radius: 16px;
+                padding: 24px;
+                border: 1px solid rgba(226, 232, 240, 0.8);
+                box-shadow: 0 10px 25px rgba(15, 23, 42, 0.03);
+                position: relative;
+                overflow: hidden;
+              "
+            >
+              <div style="position: absolute; top: -10px; right: -10px; opacity: 0.03;">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                  <div style="width: 40px; height: 40px; border-radius: 10px; background: #fff1f2; color: #f43f5e; display: flex; align-items: center; justify-content: center;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                  </div>
+                  <div style="font-size: 0.9rem; font-weight: 600; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase;">Valor Ahorrado Cliente</div>
+              </div>
+              <div style="display:flex; align-items: baseline; gap: 8px;">
+                  <div id="kpi-savings" style="font-size: 3rem; font-weight: 800; color: #0f172a; line-height: 1;">-</div>
+                  <div style="font-size: 0.9rem; color: #94a3b8; font-weight: 500;">/ año est.</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 style="color: #1e293b; font-size: 1.1rem; margin-bottom: 16px; font-weight: 700;">Última Actividad Registrada</h3>
+          <div class="table-container" style="border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid #f1f5f9;">
+            <table id="table-stats">
+              <thead>
+                <tr>
+                  <th style="background: #f8fafc; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Fecha / Hora</th>
+                  <th style="background: #f8fafc; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Responsable</th>
+                  <th style="background: #f8fafc; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Tipo Evento</th>
+                  <th style="background: #f8fafc; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Detalle Contextual</th>
+                  <th style="background: #f8fafc; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Impacto Ahorro</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="status-bar" style="padding: 12px 40px; border-top: 1px solid #e2e8f0; background: white; font-size: 0.85rem; color: #64748b; display: flex; justify-content: space-between; align-items: center; z-index: 40; min-height: 48px;">
+        <span id="statusText" class="saved" style="display: flex; align-items: center; gap: 6px;"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Sin cambios pendientes</span>
+        <span id="lastSaved">Último guardado: -</span>
+      </div>
+      
+     </main>
+    </div>
+
+    <!-- Add Commercial Modal -->
+    <div class="modal-overlay" id="addCommercialModal">
+      <div class="modal-box">
+        <h2>Añadir Nuevo Comercial</h2>
+        
+        <div style="margin-bottom: 14px;">
+            <label>Tipo de usuario</label>
+            <select id="newCommercialRole" onchange="toggleRoleFields()" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: inherit; background: #f8fafc; cursor: pointer;">
+                <option value="comercial">🟢 Comercial</option>
+                <option value="secretario">🔵 Secretario</option>
+                <option value="subagente">🟡 Sub-agente</option>
+            </select>
+        </div>
+        
+        <div id="parentAgentField" style="margin-bottom: 14px; display: none;">
+            <label>Comercial padre</label>
+            <select id="newCommercialParent" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: inherit; background: #f8fafc;">
+            </select>
+        </div>
+
+        <div id="subagentPercentField" style="margin-bottom: 14px; display: none;">
+            <label>Porcentaje sobre el padre (ej: 0.85 = 85%)</label>
+            <input type="number" id="newSubagentPercent" step="0.01" min="0" max="1" value="0.85" />
+        </div>
+        
+        <div style="margin-bottom: 14px;">
+            <label>Código de Comercial</label>
+            <input type="text" id="newCommercialCode" placeholder="Ej: JuanPerez01" />
+        </div>
+        
+        <div style="margin-bottom: 14px;">
+            <label>Nombre completo</label>
+            <input type="text" id="newCommercialName" placeholder="Ej: Juan Pérez García" />
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn btn-secondary" onclick="closeAddCommercialModal()">Cancelar</button>
+          <button class="btn btn-primary" onclick="saveNewCommercial()">Crear usuario</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save Modal -->
+    <div class="modal-overlay" id="saveModal">
+      <div class="modal-box">
+        <h2>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            style="vertical-align: middle; margin-right: 8px"
+          >
+            <path
+              d="M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2z"
+            ></path>
+            <polyline points="17 21 17 13 7 13 7 21"></polyline></svg
+          >Guardar Cambios
+        </h2>
+        <label>Observaciones (¿qué cambiaste?)</label>
+        <textarea
+          id="saveNotes"
+          placeholder="Ej: Actualicé precios de IGNIS para 20TD..."
+        ></textarea>
+        <div class="modal-actions">
+          <button class="btn btn-secondary" onclick="closeSaveModal()">
+            Cancelar
+          </button>
+          <button class="btn btn-primary" onclick="saveAllChanges()">
+            Guardar en GitHub
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- History Modal -->
+    <div class="modal-overlay" id="historyModal">
+      <div class="modal-box">
+        <h2>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            style="vertical-align: middle; margin-right: 8px"
+          >
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line></svg
+          >Historial de Cambios
+        </h2>
+        <div class="history-list" id="historyList">
+          <p style="color: #64748b">Cargando historial...</p>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-secondary" onclick="closeHistoryModal()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-box">
+        <div class="spinner"></div>
+        <p id="loadingText">Cargando datos...</p>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+      const CONFIG = {
+          password: 'MasterVivivanEdit01'
+      };
+
+      // Detect local mode - check for localhost, 127.0.0.1, file protocol, or port 8080/3000
+      const IS_LOCAL = ['localhost', '127.0.0.1', ''].includes(location.hostname) || 
+                       location.protocol === 'file:' || 
+                       [8080, 3000, 3001].includes(parseInt(location.port));
+
+      let tarifasData = null;
+      let tarifasGasData = null;
+      let comisionesData = null;
+      let comercialesData = null;
+      let comercialesInfoData = null;
+      let comercialesMetaData = null;
+      let statsData = null;
+      let changeHistory = [];
+      let hasChanges = false;
+      let originalData = {};
+      let currentEditor = '';
+
+      const TARIFA_MAP = {
+          '20TD': '2.0TD',
+          '30TD': '3.0TD',
+          '61TD': '6.1TD'
+      };
+
+      const TARIFA_MAP_REVERSE = {
+          '2.0TD': '20TD',
+          '3.0TD': '30TD',
+          '6.1TD': '61TD'
+      };
+
+      function getAdminSession() {
+          const localLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+          const sessionLoggedIn = sessionStorage.getItem('adminLoggedIn') === 'true';
+          const editorName = localStorage.getItem('editorName') || sessionStorage.getItem('editorName') || 'Desconocido';
+          return {
+              loggedIn: localLoggedIn || sessionLoggedIn,
+              editorName
+          };
+      }
+
+      // Login
+      function login() {
+          const password = document.getElementById('passwordInput').value;
+          const editorName = document.getElementById('editorNameInput').value.trim();
+
+          if (!editorName) {
+              document.getElementById('loginError').textContent = 'Ingresa tu nombre';
+              document.getElementById('loginError').style.display = 'block';
+              return;
+          }
+
+          if (password === CONFIG.password) {
+              currentEditor = editorName;
+              document.getElementById('currentEditor').textContent = editorName;
+              document.getElementById('loginScreen').style.display = 'none';
+              document.getElementById('adminPanel').style.display = 'flex';
+              localStorage.setItem('adminLoggedIn', 'true');
+              localStorage.setItem('editorName', editorName);
+              sessionStorage.setItem('adminLoggedIn', 'true');
+              sessionStorage.setItem('editorName', editorName);
+              loadAllData();
+          } else {
+              document.getElementById('loginError').textContent = 'Contraseña incorrecta';
+              document.getElementById('loginError').style.display = 'block';
+              document.getElementById('passwordInput').value = '';
+          }
+      }
+
+      function logout() {
+          localStorage.removeItem('adminLoggedIn');
+          localStorage.removeItem('editorName');
+          sessionStorage.removeItem('adminLoggedIn');
+          sessionStorage.removeItem('editorName');
+          location.reload();
+      }
+
+      // Check session
+      const adminSession = getAdminSession();
+      if (adminSession.loggedIn) {
+          currentEditor = adminSession.editorName;
+          document.getElementById('currentEditor').textContent = currentEditor;
+          document.getElementById('loginScreen').style.display = 'none';
+          document.getElementById('adminPanel').style.display = 'flex';
+          loadAllData();
+      }
+
+      // Load data
+      async function loadAllData() {
+          showLoading('Cargando datos...');
+          try {
+              tarifasData = await fetchLocalJson('/api/tarifas');
+              originalData.tarifas = JSON.stringify(tarifasData);
+
+              tarifasGasData = await fetchLocalJson('/api/tarifas-gas');
+              originalData.tarifasGas = JSON.stringify(tarifasGasData);
+
+              comisionesData = await fetchLocalJson('/api/comisiones');
+              originalData.comisiones = JSON.stringify(comisionesData);
+
+              comercialesData = await fetchLocalJson('/api/comerciales');
+              originalData.comerciales = JSON.stringify(comercialesData);
+
+              try {
+                  comercialesInfoData = await fetchLocalJson('/api/comerciales-info');
+                  originalData.comercialesInfo = JSON.stringify(comercialesInfoData);
+              } catch (e) {
+                  comercialesInfoData = {};
+                  originalData.comercialesInfo = '{}';
+              }
+
+              try {
+                  comercialesMetaData = await fetchLocalJson('/api/comerciales-meta');
+                  originalData.comercialesMeta = JSON.stringify(comercialesMetaData);
+              } catch (e) {
+                  comercialesMetaData = {};
+                  originalData.comercialesMeta = '{}';
+              }
+
+              try {
+                  statsData = await fetchLocalJson('/api/stats');
+              } catch (e) { statsData = { comparisons: [], downloads: [] }; }
+
+              try {
+                  changeHistory = await fetchLocalJson('/admin-history.json');
+              } catch (e) { changeHistory = []; } 
+
+              renderAllTables();
+              populateComercialesForStats(); // Populate commercial filter
+              renderStats(); // Render stats after data is loaded
+              hideLoading();
+              showToast('Datos cargados correctamente', 'success');
+          } catch (error) {
+              hideLoading();
+              showToast('Error: ' + error.message, 'error');
+              console.error('Error cargando datos:', error);
+          }
+      }
+
+      function renderAllTables() {
+            renderTarifaTable('20TD');
+            renderTarifaTable('30TD');
+            renderTarifaTable('61TD');
+            renderGasTable();
+            renderComisionesTable();
+            renderComercialesTable();
+            renderStats();
+        }
+
+      
+
+      async function fetchLocalJson(url) {
+          const response = await fetch(url + '?t=' + Date.now().toString());
+          if (!response.ok) {
+              throw new Error(url + ': ' + response.status);
+          }
+          return response.json();
+      }
+
+      function renderTarifaTable(tipo) {
+          const tbody = document.querySelector(`#table-${tipo} tbody`);
+          if (!tbody) return;
+
+          const jsonKey = TARIFA_MAP[tipo] || tipo;
+
+          if (!tarifasData || !tarifasData[jsonKey]) {
+              tbody.innerHTML = '<tr><td colspan="8">No hay datos para ' + tipo + '</td></tr>';
+              return;
+          }
+
+          const is20TD = tipo === '20TD';
+          let count = 0;
+
+          for (const [comercializadora, data] of Object.entries(tarifasData[jsonKey])) {
+              if (!data.productos) continue;
+
+              data.productos.forEach((producto, idx) => {
+                  count++;
+                  const row = document.createElement('tr');
+                  row.dataset.comercializadora = comercializadora.toLowerCase();
+                  row.dataset.producto = producto.nombre.toLowerCase();
+
+                  const c = producto.periodosConsumo || {};
+                  const p = producto.periodosPotencia || {};
+
+                  const isActivo = producto.activo !== false;
+                  const toggleHtml = `<label class="activo-toggle" title="${isActivo ? 'Desactivar producto' : 'Activar producto'}"><input type="checkbox" ${isActivo ? 'checked' : ''} data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" onchange="toggleProductoActivo(this)"><span class="activo-slider"></span></label>`;
+                  if (is20TD) {
+                      row.innerHTML = `
+                          <td>${toggleHtml}</td>
+                          <td class="comercializadora-name">${comercializadora}</td>
+                          <td class="producto-name">${producto.nombre}</td>
+                          <td><input type="number" step="0.000001" value="${c.P1 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosConsumo" data-key="P1" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${c.P2 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosConsumo" data-key="P2" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${c.P3 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosConsumo" data-key="P3" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${p.P1 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosPotencia" data-key="P1" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${p.P2 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosPotencia" data-key="P2" onchange="markModified(this)"></td>
+                          <td><button class="delete-btn" onclick="deleteProducto('${jsonKey}','${comercializadora}',${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg></button></td>
+                      `;
+                  } else {
+                      row.innerHTML = `
+                          <td>${toggleHtml}</td>
+                          <td class="comercializadora-name">${comercializadora}</td>
+                          <td class="producto-name">${producto.nombre}</td>
+                          <td><input type="number" step="0.000001" value="${c.P1 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosConsumo" data-key="P1" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${c.P2 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosConsumo" data-key="P2" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${c.P3 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosConsumo" data-key="P3" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${c.P4 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosConsumo" data-key="P4" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${c.P5 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosConsumo" data-key="P5" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${c.P6 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosConsumo" data-key="P6" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${p.P1 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosPotencia" data-key="P1" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${p.P2 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosPotencia" data-key="P2" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${p.P3 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosPotencia" data-key="P3" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${p.P4 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosPotencia" data-key="P4" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${p.P5 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosPotencia" data-key="P5" onchange="markModified(this)"></td>
+                          <td><input type="number" step="0.000001" value="${p.P6 || 0}" data-tipo="${jsonKey}" data-com="${comercializadora}" data-idx="${idx}" data-obj="periodosPotencia" data-key="P6" onchange="markModified(this)"></td>
+                          <td><button class="delete-btn" onclick="deleteProducto('${jsonKey}','${comercializadora}',${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg></button></td>
+                      `;
+                  }
+                  tbody.appendChild(row);
+              });
+          }
+          console.log(`${tipo}: ${count} productos renderizados`);
+      }
+
+      function renderGasTable() {
+          const tbody = document.querySelector('#table-gas tbody');
+          tbody.innerHTML = '';
+
+          if (!tarifasGasData || !tarifasGasData.GAS) return;
+
+          const gasData = tarifasGasData.GAS;
+          for (const [comercializadora, data] of Object.entries(gasData)) {
+              if (!data.productos) continue;
+
+              data.productos.forEach((producto, idx) => {
+                  const row = document.createElement('tr');
+                  row.dataset.comercializadora = comercializadora.toLowerCase();
+                  row.dataset.producto = producto.nombre.toLowerCase();
+                  if (producto.activo === false) row.style.opacity = '0.45';
+
+                  const isActivo = producto.activo !== false;
+                  const toggleHtml = `<label class="activo-toggle" title="${isActivo ? 'Desactivar producto' : 'Activar producto'}"><input type="checkbox" ${isActivo ? 'checked' : ''} data-com="${comercializadora}" data-idx="${idx}" onchange="toggleGasProductoActivo(this)"><span class="activo-slider"></span></label>`;
+
+                  row.innerHTML = `
+                      <td>${toggleHtml}</td>
+                      <td class="comercializadora-name">${comercializadora}</td>
+                      <td class="producto-name">${producto.nombre}</td>
+                      <td>${producto.band || ''}</td>
+                      <td><input type="number" step="0.000001" value="${producto.terminoFijoDiario || 0}" data-com="${comercializadora}" data-idx="${idx}" data-field="terminoFijoDiario" onchange="markModifiedGas(this)"></td>
+                      <td><input type="number" step="0.000001" value="${producto.terminoVariableKwh || 0}" data-com="${comercializadora}" data-idx="${idx}" data-field="terminoVariableKwh" onchange="markModifiedGas(this)"></td>
+                      <td><button class="delete-btn" onclick="deleteGasProducto('${comercializadora}',${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg></button></td>
+                  `;
+                  tbody.appendChild(row);
+              });
+          }
+      }
+
+      function renderComisionesTable() {
+          const tbody = document.querySelector('#table-comisiones tbody');
+          tbody.innerHTML = '';
+
+          if (!comisionesData) return;
+
+          for (const [comercializadora, data] of Object.entries(comisionesData)) {
+              if (!data.tarifas) continue;
+
+              for (const [tarifa, productos] of Object.entries(data.tarifas)) {
+                  for (const [producto, info] of Object.entries(productos)) {
+                      if (info.bloques) {
+                          info.bloques.forEach((bloque, idx) => {
+                              const row = document.createElement('tr');
+                              row.dataset.comercializadora = comercializadora.toLowerCase();
+                              row.dataset.producto = producto.toLowerCase();
+                              row.dataset.tarifa = tarifa.toLowerCase();
+
+                              const hastaText = bloque.hasta === null ? '∞' : bloque.hasta.toLocaleString();
+
+                              row.innerHTML = `
+                                  <td class="comercializadora-name">${comercializadora}</td>
+                                  <td>${tarifa}</td>
+                                  <td class="producto-name">${producto}</td>
+                                  <td>${bloque.desde.toLocaleString()} - ${hastaText}</td>
+                                  <td><input type="number" step="0.01" value="${bloque.comision || 0}" data-com="${comercializadora}" data-tarifa="${tarifa}" data-producto="${producto}" data-idx="${idx}" onchange="markModifiedComision(this)"></td>
+                              `;
+                              tbody.appendChild(row);
+                          });
+                      }
+                  }
+              }
+          }
+      }
+
+      // Mark modified
+      function markModified(input) {
+          input.classList.add('modified');
+          const { tipo, com, idx, obj, key } = input.dataset;
+          const value = parseFloat(input.value) || 0;
+          tarifasData[tipo][com].productos[parseInt(idx)][obj][key] = value;
+          setHasChanges(true);
+      }
+
+      function markModifiedGas(input) {
+          input.classList.add('modified');
+          const { com, idx, field } = input.dataset;
+          const value = parseFloat(input.value) || 0;
+          tarifasGasData.GAS[com].productos[parseInt(idx)][field] = value;
+          setHasChanges(true);
+      }
+
+      function markModifiedComision(input) {
+          input.classList.add('modified');
+          const { com, tarifa, producto, idx } = input.dataset;
+          const value = parseFloat(input.value) || 0;
+          comisionesData[com].tarifas[tarifa][producto].bloques[parseInt(idx)].comision = value;
+          setHasChanges(true);
+      }
+
+      function markModifiedComercial(input) {
+          input.classList.add('modified');
+          const { comercial, com } = input.dataset;
+          const value = parseFloat(input.value);
+          if (!comercialesData[comercial]) comercialesData[comercial] = {};
+          comercialesData[comercial][com] = Number.isFinite(value) ? value : 0;
+          setHasChanges(true);
+      }
+
+      function setHasChanges(value) {
+          hasChanges = value;
+          const statusText = document.getElementById('statusText');
+          statusText.className = value ? 'changes' : 'saved';
+          statusText.textContent = value ? '⚠️ Hay cambios sin guardar' : '✅ Sin cambios pendientes';
+      }
+
+      function deleteProducto(tipo, com, idx) {
+          if (!confirm(`¿Eliminar este producto de ${com}?`)) return;
+          tarifasData[tipo][com].productos.splice(idx, 1);
+          const uiKey = TARIFA_MAP_REVERSE[tipo] || tipo;
+          renderTarifaTable(uiKey);
+          setHasChanges(true);
+      }
+
+      // Toggle activo for individual product in tariff tables
+      function toggleProductoActivo(checkbox) {
+          const { tipo, com, idx } = checkbox.dataset;
+          const producto = tarifasData[tipo][com].productos[parseInt(idx)];
+          producto.activo = checkbox.checked;
+          setHasChanges(true);
+          // Update row style
+          const row = checkbox.closest('tr');
+          if (row) row.style.opacity = checkbox.checked ? '1' : '0.45';
+      }
+
+      // Toggle activo for individual gas product
+      function toggleGasProductoActivo(checkbox) {
+          const { com, idx } = checkbox.dataset;
+          const producto = tarifasGasData.GAS[com].productos[parseInt(idx)];
+          producto.activo = checkbox.checked;
+          setHasChanges(true);
+          const row = checkbox.closest('tr');
+          if (row) row.style.opacity = checkbox.checked ? '1' : '0.45';
+      }
+
+      // Toggle activo for whole gas supplier
+      function toggleGasSupplierActivo(supplier, enabled) {
+          if (!tarifasGasData || !tarifasGasData.GAS) return;
+          if (tarifasGasData.GAS[supplier]) tarifasGasData.GAS[supplier].activo = enabled;
+          setHasChanges(true);
+          renderVisibilidad();
+      }
+
+      // Toggle activo for whole supplier across all tariff types
+      function toggleSupplierActivo(supplier, enabled) {
+          if (!tarifasData) return;
+          for (const tipoKey of Object.keys(tarifasData)) {
+              if (tarifasData[tipoKey] && tarifasData[tipoKey][supplier]) {
+                  tarifasData[tipoKey][supplier].activo = enabled;
+              }
+          }
+          setHasChanges(true);
+          renderVisibilidad();
+      }
+
+      // Render Visibilidad tab
+      function renderVisibilidad() {
+          const container = document.getElementById('visibilidad-content');
+          if (!container) return;
+          if (!tarifasData && !tarifasGasData) {
+              container.innerHTML = '<div style="color:#94a3b8;text-align:center;padding:40px;">Los datos no están cargados aún. Abre otra pestaña primero.</div>';
+              return;
+          }
+
+          const sectionStyle = 'margin-bottom:28px;';
+          const sectionTitleStyle = 'font-size:0.75rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;';
+          const notice = '<div style="margin-bottom:16px;font-size:0.82rem;color:#64748b;">Activar/desactivar una comercializadora la oculta para <strong>todos los agentes</strong> sin borrar sus datos.</div>';
+          let html = notice;
+
+          // --- ELECTRICIDAD ---
+          if (tarifasData) {
+              const supplierMap = {};
+              for (const [tipoKey, tipoBlock] of Object.entries(tarifasData)) {
+                  if (!tipoBlock || typeof tipoBlock !== 'object') continue;
+                  for (const [supplier, data] of Object.entries(tipoBlock)) {
+                      if (!supplierMap[supplier]) supplierMap[supplier] = { tiposActivos: [], tiposInactivos: [], totalProductos: 0 };
+                      const isActive = data.activo !== false;
+                      if (isActive) supplierMap[supplier].tiposActivos.push(tipoKey);
+                      else supplierMap[supplier].tiposInactivos.push(tipoKey);
+                      supplierMap[supplier].totalProductos += (Array.isArray(data.productos) ? data.productos.length : Object.keys(data.productos || {}).length);
+                  }
+              }
+              const suppliers = Object.keys(supplierMap).sort();
+              html += `<div style="${sectionStyle}">`;
+              html += `<div style="${sectionTitleStyle}"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Electricidad</div>`;
+              html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;">';
+              for (const supplier of suppliers) {
+                  const info = supplierMap[supplier];
+                  const isActive = info.tiposInactivos.length < (info.tiposActivos.length + info.tiposInactivos.length);
+                  const metaParts = [];
+                  if (info.tiposActivos.length) metaParts.push(`<span style="color:#16a34a">${info.tiposActivos.join(', ')}</span>`);
+                  if (info.tiposInactivos.length) metaParts.push(`<span style="color:#dc2626">${info.tiposInactivos.join(', ')} OFF</span>`);
+                  const escapedSupplier = supplier.replace(/'/g, "\\'");
+                  html += `
+                    <div class="supplier-card${!isActive ? ' inactive' : ''}">
+                      <div class="supplier-info">
+                        <div class="supplier-name">${supplier}</div>
+                        <div class="supplier-meta">${metaParts.join(' · ')} · ${info.totalProductos} prod.</div>
+                      </div>
+                      <label class="activo-toggle" title="${isActive ? 'Desactivar' : 'Activar'}">
+                        <input type="checkbox" ${isActive ? 'checked' : ''} onchange="toggleSupplierActivo('${escapedSupplier}', this.checked)">
+                        <span class="activo-slider"></span>
+                      </label>
+                    </div>`;
+              }
+              html += '</div></div>';
+          }
+
+          // --- GAS ---
+          if (tarifasGasData && tarifasGasData.GAS) {
+              const gasSuppliers = Object.keys(tarifasGasData.GAS).sort();
+              html += `<div style="${sectionStyle}">`;
+              html += `<div style="${sectionTitleStyle}"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><path d="M12 2s4 2 4 6-4 6-4 10-4-2-4-6 4-6 4-10z"></path></svg>Gas</div>`;
+              html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;">';
+              for (const supplier of gasSuppliers) {
+                  const data = tarifasGasData.GAS[supplier];
+                  const isActive = data.activo !== false;
+                  const nProductos = Array.isArray(data.productos) ? data.productos.length : 0;
+                  const escapedSupplier = supplier.replace(/'/g, "\\'");
+                  html += `
+                    <div class="supplier-card${!isActive ? ' inactive' : ''}">
+                      <div class="supplier-info">
+                        <div class="supplier-name">${supplier}</div>
+                        <div class="supplier-meta" style="color:${isActive ? '#16a34a' : '#dc2626'}">${isActive ? 'Activo' : 'Inactivo'} · ${nProductos} prod.</div>
+                      </div>
+                      <label class="activo-toggle" title="${isActive ? 'Desactivar' : 'Activar'}">
+                        <input type="checkbox" ${isActive ? 'checked' : ''} onchange="toggleGasSupplierActivo('${escapedSupplier}', this.checked)">
+                        <span class="activo-slider"></span>
+                      </label>
+                    </div>`;
+              }
+              html += '</div></div>';
+          }
+
+          container.innerHTML = html;
+      }
+
+      // Save Modal
+      function openSaveModal() {
+          if (!hasChanges) {
+              showToast('No hay cambios que guardar', 'success');
+              return;
+          }
+          document.getElementById('saveModal').classList.add('active');
+      }
+
+      function closeSaveModal() {
+          document.getElementById('saveModal').classList.remove('active');
+      }
+
+      function openAddCommercialModal() {
+          document.getElementById('newCommercialCode').value = '';
+          document.getElementById('newCommercialName').value = '';
+          document.getElementById('newCommercialRole').value = 'comercial';
+          toggleRoleFields();
+          // Populate parent select
+          const parentSelect = document.getElementById('newCommercialParent');
+          parentSelect.innerHTML = '';
+          if (comercialesData) {
+              Object.keys(comercialesData).sort().forEach(c => {
+                  const meta = comercialesMetaData && comercialesMetaData[c];
+                  if (meta && (meta.role === 'secretario' || meta.role === 'subagente')) return; // only show main agents as parents
+                  const infoName = comercialesInfoData && comercialesInfoData[c] ? ` — ${comercialesInfoData[c]}` : '';
+                  const opt = document.createElement('option');
+                  opt.value = c;
+                  opt.textContent = c + infoName;
+                  parentSelect.appendChild(opt);
+              });
+          }
+          document.getElementById('addCommercialModal').classList.add('active');
+      }
+
+      function closeAddCommercialModal() {
+          document.getElementById('addCommercialModal').classList.remove('active');
+      }
+
+      function toggleRoleFields() {
+          const role = document.getElementById('newCommercialRole').value;
+          document.getElementById('parentAgentField').style.display = (role === 'secretario' || role === 'subagente') ? 'block' : 'none';
+          document.getElementById('subagentPercentField').style.display = role === 'subagente' ? 'block' : 'none';
+      }
+
+      function saveNewCommercial() {
+          const code = document.getElementById('newCommercialCode').value.trim().replace(/\s+/g, '');
+          const name = document.getElementById('newCommercialName').value.trim();
+          const role = document.getElementById('newCommercialRole').value;
+
+          if (!code || !name) {
+              showToast('Rellena código y nombre', 'error');
+              return;
+          }
+
+          if (comercialesData[code]) {
+              showToast('Ese código de comercial ya existe', 'error');
+              return;
+          }
+
+          if (!comercialesInfoData) comercialesInfoData = {};
+          if (!comercialesMetaData) comercialesMetaData = {};
+
+          const baseTemplate = {
+              "IGNIS": 0.85, "ENDESA": 0.8, "NATURGY": 0.85, "REPSOL": 0,
+              "GREENING": 0.8, "POLARIS": 0.75, "LOGOS": 0.8, "ACCIONA": 0.85,
+              "TOTAL ENERGIES": 0.8, "TOTAL RESIDENCIAL": 0.8, "ELEIA": 0.85
+          };
+
+          if (role === 'secretario') {
+              const parentCode = document.getElementById('newCommercialParent').value;
+              if (!parentCode || !comercialesData[parentCode]) {
+                  showToast('Selecciona un comercial padre válido', 'error');
+                  return;
+              }
+              // Secretary clones parent multipliers exactly
+              comercialesData[code] = { ...comercialesData[parentCode] };
+              comercialesMetaData[code] = { role: 'secretario', parentAgent: parentCode };
+          } else if (role === 'subagente') {
+              const parentCode = document.getElementById('newCommercialParent').value;
+              const pct = parseFloat(document.getElementById('newSubagentPercent').value) || 0.85;
+              if (!parentCode || !comercialesData[parentCode]) {
+                  showToast('Selecciona un comercial padre válido', 'error');
+                  return;
+              }
+              // Sub-agent: each multiplier = parent × percent
+              const parentData = comercialesData[parentCode];
+              const subData = {};
+              for (const [key, val] of Object.entries(parentData)) {
+                  subData[key] = Math.round((val * pct) * 10000) / 10000;
+              }
+              comercialesData[code] = subData;
+              comercialesMetaData[code] = { role: 'subagente', parentAgent: parentCode, subagentPercent: pct };
+          } else {
+              comercialesData[code] = { ...baseTemplate };
+              comercialesMetaData[code] = { role: 'comercial' };
+          }
+
+          comercialesInfoData[code] = name;
+
+          closeAddCommercialModal();
+          renderComercialesTable();
+          setHasChanges(true);
+          showToast(`✅ ${role === 'secretario' ? 'Secretario' : role === 'subagente' ? 'Sub-agente' : 'Comercial'} ${code} creado`, 'success');
+      }
+
+      function collectChangedSuppliersFromUI() {
+          const suppliers = new Set();
+          document.querySelectorAll('.modified').forEach((el) => {
+              const raw = (el.dataset && (el.dataset.com || el.dataset.comercializadora)) || '';
+              const norm = String(raw || '').trim();
+              if (norm) suppliers.add(norm);
+          });
+          return Array.from(suppliers);
+      }
+
+      // Save
+      async function saveAllChanges() {
+          const notes = document.getElementById('saveNotes').value.trim();
+          if (!notes) {
+              showToast('Por favor escribe qué cambios hiciste', 'error');
+              return;
+          }
+
+          closeSaveModal();
+          showLoading('Guardando cambios en GitHub...');
+
+          try {
+              const changedTarifas = JSON.stringify(tarifasData) !== originalData.tarifas;
+              const changedTarifasGas = JSON.stringify(tarifasGasData) !== originalData.tarifasGas;
+              const changedComisiones = JSON.stringify(comisionesData) !== originalData.comisiones;
+              const changedComerciales = JSON.stringify(comercialesData) !== originalData.comerciales;
+              const changedComercialesInfo = JSON.stringify(comercialesInfoData) !== originalData.comercialesInfo;
+              const changedComercialesMeta = JSON.stringify(comercialesMetaData || {}) !== (originalData.comercialesMeta || '{}');
+
+              const changedFiles = [];
+              if (changedTarifas) changedFiles.push('tarifas.v2.json');
+              if (changedTarifasGas) changedFiles.push('tarifas-gas.v2.json');
+              if (changedComisiones) changedFiles.push('comisiones.json');
+              if (changedComerciales) changedFiles.push('comerciales.json');
+              if (changedComercialesInfo) changedFiles.push('comerciales.info.json');
+              if (changedComercialesMeta) changedFiles.push('comerciales.meta.json');
+              const affectedSuppliers = collectChangedSuppliersFromUI();
+
+              
+              if (changedTarifas) await saveToBackend('tarifas.v2.json', tarifasData, false);
+              if (changedTarifasGas) await saveToBackend('tarifas-gas.v2.json', tarifasGasData, false);
+              if (changedComisiones) await saveToBackend('comisiones.json', comisionesData, false);
+              if (changedComerciales) await saveToBackend('comerciales.json', comercialesData, false);
+              if (changedComercialesInfo) await saveToBackend('comerciales.info.json', comercialesInfoData, false);
+              if (changedComercialesMeta) await saveToBackend('comerciales.meta.json', comercialesMetaData || {}, false);
+
+              changeHistory.unshift({
+                  date: new Date().toISOString(),
+                  editor: currentEditor,
+                  notes: notes,
+                  changedFiles,
+                  affectedSuppliers
+              });
+              if (changeHistory.length > 50) changeHistory = changeHistory.slice(0, 50);
+
+              await saveToBackend('admin-history.json', changeHistory);
+
+              originalData.tarifas = JSON.stringify(tarifasData);
+              originalData.tarifasGas = JSON.stringify(tarifasGasData);
+              originalData.comisiones = JSON.stringify(comisionesData);
+              originalData.comerciales = JSON.stringify(comercialesData);
+              originalData.comercialesInfo = JSON.stringify(comercialesInfoData);
+              originalData.comercialesMeta = JSON.stringify(comercialesMetaData || {});
+
+              document.querySelectorAll('.modified').forEach(el => el.classList.remove('modified'));
+              document.getElementById('saveNotes').value = '';
+
+              setHasChanges(false);
+              document.getElementById('lastSaved').textContent = 'Último guardado: ' + new Date().toLocaleTimeString();
+
+              hideLoading();
+              showToast('✅ Guardado correctamente', 'success');
+          } catch (error) {
+              hideLoading();
+              showToast('Error: ' + error.message, 'error');
+              console.error(error);
+          }
+      }
+
+      async function saveToBackend(filename, data) {
+          const response = await fetch('/api/admin/save', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ file: filename, data })
+          });
+          if (!response.ok) {
+              const err = await response.json().catch(() => ({}));
+              throw new Error(err.error || 'Error al guardar en local');
+          }
+      }
+
+      // History
+      function showHistory() {
+          const list = document.getElementById('historyList');
+          if (changeHistory.length === 0) {
+              list.innerHTML = '<p style="color: #64748b;">No hay historial de cambios.</p>';
+          } else {
+              list.innerHTML = changeHistory.map(h => `
+                  <div class="history-item">
+                      <div class="date">${new Date(h.date).toLocaleString()}</div>
+                      <div class="editor">👤 ${h.editor}</div>
+                      <div class="notes">${h.notes}</div>
+                  </div>
+              `).join('');
+          }
+          document.getElementById('historyModal').classList.add('active');
+      }
+
+      function closeHistoryModal() {
+          document.getElementById('historyModal').classList.remove('active');
+      }
+
+      // Filter
+      function filterTable(type) {
+          let searchInput, tbody, tarifaFilter = null;
+
+          if (type === 'comisiones') {
+              searchInput = document.getElementById('search-comisiones');
+              tbody = document.querySelector('#table-comisiones tbody');
+              tarifaFilter = document.getElementById('filter-tarifa-comision').value.toLowerCase();
+          } else if (type === 'comerciales') {
+              searchInput = document.getElementById('search-comerciales');
+              tbody = document.querySelector('#table-comerciales tbody');
+          } else if (type === 'gas') {
+              searchInput = document.getElementById('search-gas');
+              tbody = document.querySelector('#table-gas tbody');
+          } else {
+              searchInput = document.getElementById(`search-${type}`);
+              tbody = document.querySelector(`#table-${type} tbody`);
+          }
+
+          const term = searchInput.value.toLowerCase();
+
+          tbody.querySelectorAll('tr').forEach(row => {
+              const com = row.dataset.comercializadora || '';
+              const prod = row.dataset.producto || '';
+              const tarifa = row.dataset.tarifa || '';
+
+              const matchesSearch = com.includes(term) || prod.includes(term);
+              const matchesTarifa = !tarifaFilter || tarifa.includes(tarifaFilter);
+
+              row.style.display = (matchesSearch && matchesTarifa) ? '' : 'none';
+          });
+      }
+
+      // Tabs
+      function showTab(tabId, triggerEl) {
+          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+          const target = triggerEl || document.querySelector(`.tab[data-tab="${tabId}"]`);
+          if (target) target.classList.add('active');
+          document.getElementById(tabId).classList.add('active');
+          
+          const titleMap = {
+              'tarifas-20TD': 'Gestión de Precios Eléctricos',
+              'tarifas-30TD': 'Gestión de Precios Eléctricos',
+              'tarifas-61TD': 'Gestión de Precios Eléctricos',
+              'tarifas-gas': 'Gestión Peajes Gas',
+              'actualizar-tarifas': 'Analizador e Importador',
+              'comisiones': 'Régimen de Comisiones',
+              'comerciales': 'Comerciales',
+              'visibilidad': 'Visibilidad Global'
+          };
+          const topTitle = document.getElementById('top-title');
+          if (topTitle && titleMap[tabId]) topTitle.innerText = titleMap[tabId];
+          if (tabId === 'visibilidad') renderVisibilidad();
+      }
+
+      const initialTab = new URLSearchParams(location.search).get('tab');
+      if (initialTab) {
+          showTab(initialTab);
+      }
+
+      // UI
+      function showLoading(text) {
+          document.getElementById('loadingText').textContent = text;
+          document.getElementById('loadingOverlay').classList.add('active');
+      }
+
+      function hideLoading() {
+          document.getElementById('loadingOverlay').classList.remove('active');
+      }
+
+      function showToast(message, type) {
+          const toast = document.getElementById('toast');
+          toast.textContent = message;
+          toast.className = `toast ${type} show`;
+          setTimeout(() => toast.classList.remove('show'), 4000);
+      }
+
+      window.onbeforeunload = () => hasChanges ? 'Tienes cambios sin guardar.' : null;
+        function renderComercialesTable() {
+            const container = document.getElementById('comerciales-list');
+            container.innerHTML = '';
+            
+            const filter = document.getElementById('search-comerciales').value.toLowerCase();
+            
+            if (!comercialesData) return;
+            
+            let count = 0;
+            
+            // Populate stats filter only once
+            const statsSelect = document.getElementById('stats-commercial-filter');
+            if (statsSelect && statsSelect.options.length === 1) {
+                Object.keys(comercialesData).sort().forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c;
+                    opt.textContent = c;
+                    statsSelect.appendChild(opt);
+                });
+            }
+
+            // Sort: admins first, then alphabetically by name
+            const entries = Object.entries(comercialesData).sort((a, b) => {
+                const nameA = (comercialesInfoData && comercialesInfoData[a[0]]) || a[0];
+                const nameB = (comercialesInfoData && comercialesInfoData[b[0]]) || b[0];
+                return nameA.localeCompare(nameB, 'es');
+            });
+
+            for (const [comercial, settings] of entries) {
+                const displayName = (comercialesInfoData && comercialesInfoData[comercial]) || comercial;
+                if (filter && !comercial.toLowerCase().includes(filter) && !displayName.toLowerCase().includes(filter)) continue;
+                count++;
+                
+                let totalRelevantDownloads = 0;
+                let detailsHTML = '';
+
+                for (const [comercializadora, multiplicador] of Object.entries(settings)) {
+                    const relevantDownloads = (statsData?.downloads || []).filter(d => 
+                        d.commercial === comercial && 
+                        d.supplier === comercializadora
+                    ).length;
+                    totalRelevantDownloads += relevantDownloads;
+
+                    detailsHTML += `
+                        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid #f1f5f9;">
+                            <span style="font-weight:500;color:#334155;font-size:0.84rem;">${comercializadora}</span>
+                            <div style="display:flex;align-items:center;gap:10px;">
+                                <span style="font-size:0.72rem;color:#94a3b8;background:#f8fafc;padding:2px 6px;border-radius:10px;border:1px solid #f1f5f9;">${relevantDownloads}</span>
+                                <input type="number" step="0.01" value="${multiplicador || 0}" data-comercial="${comercial}" data-comercializadora="${comercializadora}" onchange="markModifiedComercial(this)" style="width:68px;text-align:center;font-weight:600;border-radius:6px;padding:5px 6px;border:1px solid #e2e8f0;font-size:0.84rem;font-family:'Inter',monospace;background:#f8fafc;transition:all 0.2s;" onfocus="this.style.borderColor='#3b82f6';this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)';this.style.background='#fff'" onblur="this.style.borderColor='#e2e8f0';this.style.boxShadow='none';this.style.background='#f8fafc'">
+                            </div>
+                        </div>
+                    `;
+                }
+
+                const meta = comercialesMetaData && comercialesMetaData[comercial];
+                const roleTag = meta ? (meta.role === 'secretario' 
+                    ? `<span style="display:inline-flex;align-items:center;gap:3px;background:#dbeafe;color:#2563eb;padding:1px 7px;border-radius:6px;font-size:0.68rem;font-weight:600;">Secretario · ${meta.parentAgent}</span>` 
+                    : meta.role === 'subagente' 
+                    ? `<span style="display:inline-flex;align-items:center;gap:3px;background:#fef9c3;color:#a16207;padding:1px 7px;border-radius:6px;font-size:0.68rem;font-weight:600;">Sub-agente · ${meta.parentAgent} · ${Math.round((meta.subagentPercent||0)*100)}%</span>` 
+                    : '') : '';
+
+                const avatarColors = [
+                    ['#e0e7ff','#4f46e5'],['#dbeafe','#2563eb'],['#d1fae5','#059669'],
+                    ['#fce7f3','#db2777'],['#fef3c7','#d97706'],['#e0e7ff','#7c3aed'],
+                    ['#ccfbf1','#0d9488']
+                ];
+                const colorIdx = comercial.charCodeAt(0) % avatarColors.length;
+                const [bg, fg] = avatarColors[colorIdx];
+
+                // Build card
+                const card = document.createElement('div');
+                card.style.cssText = 'background:#fff;padding:14px 20px;display:flex;align-items:center;gap:14px;transition:background 0.15s;cursor:default;';
+                card.onmouseenter = () => card.style.background = '#f8fafc';
+                card.onmouseleave = () => card.style.background = '#fff';
+
+                card.innerHTML = `
+                    <div style="width:38px;height:38px;min-width:38px;border-radius:10px;background:${bg};display:flex;align-items:center;justify-content:center;color:${fg};font-weight:700;font-size:0.95rem;">${displayName.charAt(0).toUpperCase()}</div>
+                    <div style="flex:1;min-width:0;">
+                        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                            <span style="font-weight:600;color:#0f172a;font-size:0.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${displayName}</span>
+                            ${roleTag}
+                        </div>
+                        <div style="font-size:0.75rem;color:#94a3b8;margin-top:1px;font-family:'Inter',monospace;letter-spacing:0.3px;">${comercial}</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+                        <button onclick="toggleComercialDetails('${comercial}')" title="Configurar multiplicadores" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid #e2e8f0;border-radius:8px;background:#fff;cursor:pointer;color:#64748b;transition:all 0.2s;" onmouseover="this.style.borderColor='#3b82f6';this.style.color='#3b82f6';this.style.background='#eff6ff'" onmouseout="this.style.borderColor='#e2e8f0';this.style.color='#64748b';this.style.background='#fff'">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        </button>
+                        <button onclick="promptDeleteComercial('${comercial}')" title="Eliminar comercial" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid #fecdd3;border-radius:8px;background:#fff;cursor:pointer;color:#f43f5e;transition:all 0.2s;" onmouseover="this.style.background='#fff1f2';this.style.borderColor='#fda4af'" onmouseout="this.style.background='#fff';this.style.borderColor='#fecdd3'">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V3h6v3"></path></svg>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+
+                // Expanded Details
+                const detailsDiv = document.createElement('div');
+                detailsDiv.id = `details-${comercial}`;
+                detailsDiv.style.cssText = 'display:none;background:#f8fafc;border-top:1px solid #e2e8f0;';
+                detailsDiv.innerHTML = `
+                    <div style="padding:20px;">
+                        <div style="margin-bottom:12px;color:#1e293b;font-weight:600;font-size:0.88rem;display:flex;align-items:center;gap:6px;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            Multiplicadores — ${displayName}
+                        </div>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0;background:#fff;border-radius:10px;border:1px solid #e2e8f0;overflow:hidden;">
+                            ${detailsHTML}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(detailsDiv);
+            }
+
+            document.getElementById('comerciales-count').textContent = `${count} comerciales`;
+        }
+        
+        function toggleComercialDetails(comercial) {
+            const row = document.getElementById(`details-${comercial}`);
+            if (row.style.display === 'none') {
+                row.style.display = 'table-row';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+
+        function promptDeleteComercial(comercial) {
+            if (confirm(`⚠️ CUIDADO: ¿Estás completamente seguro de eliminar DEFINITIVAMENTE al comercial ${comercial}? Se perderán sus permisos de generar comisiones de inmediato.`)) {
+                delete comercialesData[comercial];
+                if (comercialesInfoData && comercialesInfoData[comercial]) {
+                    delete comercialesInfoData[comercial];
+                }
+                if (comercialesMetaData && comercialesMetaData[comercial]) {
+                    delete comercialesMetaData[comercial];
+                }
+                hasChanges = true;
+                document.getElementById('statusText').textContent = '⚠️ Tienes cambios sin guardar';
+                document.getElementById('statusText').className = 'unsaved';
+                renderComercialesTable();
+                showToast(`Usuario ${comercial} revocado y eliminado exitosamente. Haz clic en Guardar para aplicar cambios.`, 'success');
+            }
+        }
+
+        function populateComercialesForStats() {
+            const statsSelect = document.getElementById('stats-commercial-filter');
+            if (!statsSelect) return;
+            
+            const currentValue = statsSelect.value;
+            statsSelect.innerHTML = '<option value="all">Todos los comerciales</option>';
+            
+            // Get unique commercials from stats data
+            const commercials = new Set();
+            if (statsData) {
+                (statsData.comparisons || []).forEach(c => c.commercial && commercials.add(c.commercial));
+                (statsData.downloads || []).forEach(d => d.commercial && commercials.add(d.commercial));
+            }
+            
+            Array.from(commercials).sort().forEach(code => {
+                const opt = document.createElement('option');
+                opt.value = code;
+                opt.textContent = code;
+                statsSelect.appendChild(opt);
+            });
+            
+            if (currentValue && Array.from(statsSelect.options).some(o => o.value === currentValue)) {
+                statsSelect.value = currentValue;
+            }
+        }
+
+        async function cleanupStatsByDate() {
+            const period = prompt('Eliminar datos de estadísticas más antiguos que:\n1 = 1 semana\n2 = 1 mes\n3 = 3 meses\n4 = 6 meses\n\nEscribe el número:', '1');
+            if (!period) return;
+            
+            const days = { '1': 7, '2': 30, '3': 90, '4': 180 }[period];
+            if (!days) { alert('Opción no válida'); return; }
+            
+            const cutoff = new Date();
+            cutoff.setDate(cutoff.getDate() - days);
+            
+            const beforeComparisons = (statsData.comparisons || []).length;
+            const beforeDownloads = (statsData.downloads || []).length;
+            
+            statsData.comparisons = (statsData.comparisons || []).filter(c => new Date(c.timestamp) >= cutoff);
+            statsData.downloads = (statsData.downloads || []).filter(d => new Date(d.timestamp) >= cutoff);
+            
+            const removedComparisons = beforeComparisons - statsData.comparisons.length;
+            const removedDownloads = beforeDownloads - statsData.downloads.length;
+            
+            try {
+                await saveStatsFile(statsData);
+                populateComercialesForStats(); // Refresh filter
+                renderStats();
+                showToast(`Limpieza completada: ${removedComparisons} comparativas y ${removedDownloads} descargas eliminadas`, 'success');
+            } catch (err) {
+                showToast('Error al guardar: ' + err.message, 'error');
+            }
+        }
+
+        async function saveStatsFile(data) {
+            const payload = { stats: data, editor: sessionStorage.getItem('editorName') || 'Admin' };
+            const res = await fetch('/api/save-stats', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+            if (!res.ok) throw new Error('Error al guardar estadísticas');
+        }
+
+        function renderStats() {
+            if (!statsData) return;
+            
+            const filter = document.getElementById('stats-commercial-filter').value;
+            const comparisonsContainer = document.getElementById('kpi-comparisons');
+            const downloadsContainer = document.getElementById('kpi-downloads');
+            const savingsContainer = document.getElementById('kpi-savings');
+            // const commissionContainer = document.getElementById('kpi-commission');
+            const tbody = document.querySelector('#table-stats tbody');
+            
+            let filteredComparisons = statsData.comparisons || [];
+            let filteredDownloads = statsData.downloads || [];
+            
+            if (filter !== 'all') {
+                filteredComparisons = filteredComparisons.filter(c => c.commercial === filter);
+                filteredDownloads = filteredDownloads.filter(d => d.commercial === filter);
+            }
+            
+            // Calc Metrics
+            const totalComparisons = filteredComparisons.length;
+            const totalDownloads = filteredDownloads.length;
+            const totalSavings = filteredDownloads.reduce((sum, d) => sum + (parseFloat(d.savings) || 0), 0);
+            
+            comparisonsContainer.textContent = totalComparisons;
+            downloadsContainer.textContent = totalDownloads;
+            savingsContainer.textContent = `€ ${Math.abs(totalSavings).toFixed(2)}`;
+            
+            // Render Table (Last 50 events combined)
+            tbody.innerHTML = '';
+            const allEvents = [
+                ...filteredComparisons.map(c => ({ ...c, kind: 'Comparativa', dateObj: new Date(c.timestamp), details: `${c.results} ofertas calculadas` })),
+                ...filteredDownloads.map(d => ({ ...d, kind: 'Descarga PDF', dateObj: new Date(d.timestamp), details: `${d.supplier} - ${d.product}` }))
+            ].sort((a, b) => b.dateObj - a.dateObj).slice(0, 50);
+            
+            if (allEvents.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:20px;color:#94a3b8;">No hay estadísticas registradas aún.</td></tr>';
+                return;
+            }
+
+            allEvents.forEach(evt => {
+                const row = document.createElement('tr');
+                const dateObj = new Date(evt.timestamp);
+                const isToday = new Date().toDateString() === dateObj.toDateString();
+                const timeStr = dateObj.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                const dateStr = isToday ? `Hoy, ${timeStr}` : dateObj.toLocaleDateString() + ` ${timeStr}`;
+                const savingsStr = evt.savings ? `+ € ${Math.abs(parseFloat(evt.savings)).toFixed(2)}` : '-';
+                
+                row.innerHTML = `
+                    <td style="color:#64748b; font-size: 0.85rem;">${dateStr}</td>
+                    <td style="font-weight:700; color:#1e293b; letter-spacing: -0.2px;">${evt.commercial}</td>
+                    <td><span style="font-size:0.75rem; font-weight: 600; padding:4px 10px; border-radius:6px; background:${evt.kind === 'Descarga PDF' ? '#f0fdf4' : '#f8fafc'}; color:${evt.kind === 'Descarga PDF' ? '#16a34a' : '#475569'}; border: 1px solid ${evt.kind === 'Descarga PDF' ? '#bbf7d0' : '#e2e8f0'}">${evt.kind}</span></td>
+                    <td style="color:#64748b; font-size: 0.9rem;">${evt.details}</td>
+                    <td style="font-weight:800; color:${evt.savings > 0 ? '#10b981' : '#cbd5e1'}">${savingsStr}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // =============== ACTUALIZAR TARIFAS DESDE PDF/EXCEL ===============
+        let selectedTarifaFiles = [];
+        let extractedTarifasData = null;
+        let pendingChanges = [];
+
+        function handleTarifasFileSelect() {
+            const input = document.getElementById('tarifasFileInput');
+            const fileNameDiv = document.getElementById('selectedFileName');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            if (input.files && input.files.length > 0) {
+                selectedTarifaFiles = Array.from(input.files);
+                fileNameDiv.innerHTML = selectedTarifaFiles.map(file => `📄 ${file.name}`).join('<br>');
+                analyzeBtn.disabled = false;
+            } else {
+                selectedTarifaFiles = [];
+                fileNameDiv.innerHTML = '';
+                analyzeBtn.disabled = true;
+            }
+        }
+
+        async function uploadTarifasFile() {
+            if (!selectedTarifaFiles.length) { showToast('Selecciona al menos un archivo', 'error'); return; }
+            showLoading('Analizando archivos...');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            analyzeBtn.disabled = true;
+            analyzeBtn.textContent = 'Analizando archivos...';
+            try {
+                const endpoint = IS_LOCAL ? '/api/actualizar-tarifas' : '/.netlify/functions/actualizar-tarifas';
+                const tarifas = [];
+                const comisiones = {};
+                for (const file of selectedTarifaFiles) {
+                    const base64 = await fileToBase64(file);
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ fileName: file.name, mimeType: file.type || 'application/octet-stream', base64 })
+                    });
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || `Error ${response.status} en ${file.name}`);
+                    }
+                    const result = await response.json();
+                    const extracted = Array.isArray(result?.extracted?.tarifas) ? result.extracted.tarifas : [];
+                    extracted.forEach(item => tarifas.push({
+                        ...item,
+                        sourceFile: item.sourceFile || file.name,
+                        effectiveDate: item.effectiveDate || result?.extracted?.effectiveDate || extractDateFromFileName(file.name)
+                    }));
+                    const extractedComisiones = result?.extracted?.comisiones;
+                    if (extractedComisiones && typeof extractedComisiones === 'object') {
+                        Object.entries(extractedComisiones).forEach(([supplier, data]) => {
+                            comisiones[supplier] = data;
+                        });
+                    }
+                }
+                extractedTarifasData = { tarifas, comisiones };
+                if (!tarifas.length) { showToast('No se encontraron tarifas en los documentos', 'error'); return; }
+                showToast(`✅ Se extrajeron ${tarifas.length} tarifas desde ${selectedTarifaFiles.length} archivo(s)`, 'success');
+                matchAndPreviewTariffs();
+            } catch (err) { showToast('❌ Error: ' + err.message, 'error'); console.error(err); }
+            finally { showLoading(false); analyzeBtn.disabled = false; analyzeBtn.textContent = 'Analizar tarifas'; }
+        }
+
+        function extractDateFromFileName(fileName) {
+            const match = String(fileName || '').match(/(\d{1,2})[.-](\d{1,2})[.-](\d{4})/);
+            if (!match) return null;
+            const [, day, month, year] = match;
+            return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+        }
+
+        function isLoviluzOfficeImport(extracted) {
+            return (extracted || []).some(item => {
+                const supplier = (item.comercializadora || '').toUpperCase();
+                const product = (item.nombreProducto || '').toUpperCase();
+                return supplier === 'LOVILUZ' && product.endsWith(' OFI');
+            });
+        }
+
+        function buildProductFromExtractedTariff(item) {
+            const product = {
+                nombre: (item.nombreProducto || '').trim(),
+                periodosConsumo: item.periodosConsumo || {},
+                periodosPotencia: item.periodosPotencia || {},
+                activo: true
+            };
+            if (item.consumoAnualMin !== undefined && item.consumoAnualMin !== null) product.consumoAnualMin = item.consumoAnualMin;
+            if (item.consumoAnualMax !== undefined && item.consumoAnualMax !== null) product.consumoAnualMax = item.consumoAnualMax;
+            if (item.potenciaMin !== undefined && item.potenciaMin !== null) product.potenciaMin = item.potenciaMin;
+            if (item.potenciaMax !== undefined && item.potenciaMax !== null) product.potenciaMax = item.potenciaMax;
+            return product;
+        }
+
+        function summarizeProducts(products) {
+            return (products || []).map(product => product?.nombre || '').filter(Boolean).join(', ');
+        }
+
+        function summarizeCommissions(config) {
+            const parts = [];
+            Object.entries(config?.tarifas || {}).forEach(([tariffType, products]) => {
+                parts.push(`${tariffType}: ${Object.keys(products || {}).join(', ')}`);
+            });
+            return parts.join(' | ');
+        }
+
+        function buildLoviluzOfficeReplaceChanges(extracted) {
+            const changes = [];
+            const officeTariffs = (extracted || []).filter(item => {
+                return (item.comercializadora || '').toUpperCase() === 'LOVILUZ' && (item.nombreProducto || '').toUpperCase().endsWith(' OFI');
+            });
+            const byType = officeTariffs.reduce((acc, item) => {
+                const type = item.tipoTarifa || '';
+                if (!type || type === 'GAS') return acc;
+                if (!acc[type]) acc[type] = [];
+                acc[type].push(item);
+                return acc;
+            }, {});
+
+            Object.entries(byType).forEach(([tipoTarifa, items]) => {
+                const existingProducts = tarifasData?.[tipoTarifa]?.LOVILUZ?.productos || [];
+                const effectiveDate = items.map(item => item.effectiveDate).filter(Boolean).sort().pop() || null;
+                changes.push({
+                    kind: 'supplierProductsReplace',
+                    fileKey: 'tarifas.v2.json',
+                    comercializadora: 'LOVILUZ',
+                    producto: 'LOVILUZ',
+                    tipoTarifa,
+                    campo: 'productos',
+                    oldValue: summarizeProducts(existingProducts),
+                    newValue: summarizeProducts(items.map(buildProductFromExtractedTariff)),
+                    diff: '',
+                    newProducts: items.map(buildProductFromExtractedTariff),
+                    effectiveDate,
+                    sourceFile: items.map(item => item.sourceFile).filter(Boolean)[0] || ''
+                });
+            });
+
+            const newSupplierCommissions = extractedTarifasData?.comisiones?.LOVILUZ;
+            if (newSupplierCommissions) {
+                changes.push({
+                    kind: 'supplierCommissionsReplace',
+                    fileKey: 'comisiones.json',
+                    comercializadora: 'LOVILUZ',
+                    producto: 'LOVILUZ',
+                    tipoTarifa: 'COMISIONES',
+                    campo: 'reglas',
+                    oldValue: summarizeCommissions(comisionesData?.LOVILUZ),
+                    newValue: summarizeCommissions(newSupplierCommissions),
+                    diff: '',
+                    newSupplierCommissions,
+                    sourceFile: officeTariffs.map(item => item.sourceFile).filter(Boolean)[0] || '',
+                    effectiveDate: officeTariffs.map(item => item.effectiveDate).filter(Boolean).sort().pop() || null
+                });
+            }
+
+            return changes;
+        }
+
+        function matchAndPreviewTariffs() {
+            if (!extractedTarifasData || !extractedTarifasData.tarifas) return;
+            const extracted = extractedTarifasData.tarifas, changes = [], notFound = [];
+            if (isLoviluzOfficeImport(extracted)) {
+                pendingChanges = buildLoviluzOfficeReplaceChanges(extracted);
+                renderTarifaPreview(pendingChanges, []);
+                return;
+            }
+            extracted.forEach(newTarifa => {
+                const comercializadora = (newTarifa.comercializadora || '').toUpperCase(), tipoTarifa = newTarifa.tipoTarifa || '', nombreProducto = (newTarifa.nombreProducto || '').trim();
+                const normalizedName = nombreProducto.toLowerCase();
+                let comercial = '', supplierBlock = null, existing = null, fileKey = '';
+                if (tipoTarifa === 'GAS') {
+                    fileKey = 'tarifas-gas.v2.json';
+                    comercial = Object.keys(tarifasGasData?.GAS || {}).find(key => key.toUpperCase() === comercializadora) || '';
+                    supplierBlock = comercial ? tarifasGasData.GAS[comercial] : null;
+                } else {
+                    fileKey = 'tarifas.v2.json';
+                    comercial = Object.keys(tarifasData?.[tipoTarifa] || {}).find(key => key.toUpperCase() === comercializadora) || '';
+                    supplierBlock = comercial ? tarifasData[tipoTarifa][comercial] : null;
+                }
+                if (!supplierBlock) { notFound.push(`${comercializadora} - ${nombreProducto} (${tipoTarifa})`); return; }
+                existing = (supplierBlock.productos || []).find(producto => (producto?.nombre || '').trim().toLowerCase() === normalizedName);
+                if (!existing) { notFound.push(`${comercial || comercializadora} - ${nombreProducto} (${tipoTarifa})`); return; }
+
+                const newPeriodosConsumo = newTarifa.periodosConsumo || {}, newPeriodosPotencia = newTarifa.periodosPotencia || {};
+
+                if (tipoTarifa === 'GAS') {
+                    const gasFieldMap = {
+                        terminoFijoDiario: newTarifa.terminoFijoDiario ?? newPeriodosPotencia.fijoDiario,
+                        terminoVariableKwh: newTarifa.terminoVariableKwh ?? newPeriodosConsumo.kWh
+                    };
+                    Object.entries(gasFieldMap).forEach(([campo, newValue]) => {
+                        if (newValue === null || newValue === undefined) return;
+                        if (existing[campo] !== newValue) {
+                            const oldValue = existing[campo];
+                            const diff = oldValue ? (((newValue - oldValue) / oldValue) * 100) : 0;
+                            changes.push({ comercializadora: comercial, producto: existing.nombre, tipoTarifa, fileKey, campo, oldValue, newValue, diff: diff.toFixed(2), sourceFile: newTarifa.sourceFile || '', effectiveDate: newTarifa.effectiveDate || null });
+                        }
+                    });
+                    return;
+                }
+
+                for (const [periodo, newValue] of Object.entries(newPeriodosConsumo)) {
+                    if (newValue === null || newValue === undefined) continue;
+                    const oldValue = existing.periodosConsumo?.[periodo];
+                    if (oldValue !== undefined && oldValue !== newValue) {
+                        const diff = oldValue ? (((newValue - oldValue) / oldValue) * 100) : 0;
+                        changes.push({ comercializadora: comercial, producto: existing.nombre, tipoTarifa, fileKey, campo: `periodosConsumo.${periodo}`, oldValue, newValue, diff: diff.toFixed(2), sourceFile: newTarifa.sourceFile || '', effectiveDate: newTarifa.effectiveDate || null });
+                    }
+                }
+                if (existing.periodosPotencia) {
+                    for (const [periodo, newValue] of Object.entries(newPeriodosPotencia)) {
+                        if (newValue === null || newValue === undefined) continue;
+                        const oldValue = existing.periodosPotencia?.[periodo];
+                        if (oldValue !== undefined && oldValue !== newValue) {
+                            const diff = oldValue ? (((newValue - oldValue) / oldValue) * 100) : 0;
+                            changes.push({ comercializadora: comercial, producto: existing.nombre, tipoTarifa, fileKey, campo: `periodosPotencia.${periodo}`, oldValue, newValue, diff: diff.toFixed(2), sourceFile: newTarifa.sourceFile || '', effectiveDate: newTarifa.effectiveDate || null });
+                        }
+                    }
+                }
+            });
+            pendingChanges = changes;
+            renderTarifaPreview(changes, notFound);
+        }
+
+        function formatPreviewValue(value) {
+            if (value === null || value === undefined || value === '') return '—';
+            if (typeof value === 'number') return Number(value).toFixed(6);
+            if (Array.isArray(value)) return value.join(', ');
+            if (typeof value === 'object') return JSON.stringify(value);
+            return String(value);
+        }
+
+        function getDiffColor(diff) {
+            const value = Number(diff);
+            if (!Number.isFinite(value) || value === 0) return '#334155';
+            return value > 0 ? '#dc2626' : '#16a34a';
+        }
+
+        function renderTarifaPreview(changes, notFound) {
+            const previewDiv = document.getElementById('tarifasPreview'), notFoundDiv = document.getElementById('tarifasNotFound'), tbody = document.querySelector('#table-tarifa-preview tbody');
+            tbody.innerHTML = '';
+            if (changes.length > 0) {
+                previewDiv.style.display = 'block';
+                changes.forEach((change, idx) => {
+                    const row = document.createElement('tr');
+                    const diffColor = getDiffColor(change.diff);
+                    const diffText = change.diff === '' || change.diff === null || change.diff === undefined ? '—' : `${Number(change.diff) > 0 ? '+' : ''}${change.diff}%`;
+                    row.innerHTML = `<td><input type="checkbox" class="change-checkbox" data-idx="${idx}" checked></td><td>${change.comercializadora}</td><td>${change.producto}${change.sourceFile ? `<div style="font-size:0.75rem;color:#64748b">${change.sourceFile}</div>` : ''}</td><td><span class="pill pill-alt" style="font-size:0.75rem">${change.tipoTarifa}</span></td><td><code>${change.campo}</code></td><td style="color: #64748b; max-width: 260px; white-space: normal;">${formatPreviewValue(change.oldValue)}</td><td style="font-weight: 700; color: ${diffColor}; max-width: 260px; white-space: normal;">${formatPreviewValue(change.newValue)}</td><td style="font-weight: 700; color: ${diffColor}">${diffText}</td>`;
+                    tbody.appendChild(row);
+                });
+            } else { previewDiv.style.display = 'none'; }
+            if (notFound.length > 0) { notFoundDiv.style.display = 'block'; document.getElementById('notFoundList').innerHTML = notFound.map(item => `<li>${item}</li>`).join(''); }
+            else { notFoundDiv.style.display = 'none'; }
+            if (changes.length === 0 && notFound.length === 0) { showToast('No se detectaron cambios en tarifas existentes', 'warning'); }
+        }
+
+        function toggleAllChanges(checked) { document.querySelectorAll('.change-checkbox').forEach(cb => cb.checked = checked); }
+        function cancelTarifaUpdates() { document.getElementById('tarifasPreview').style.display = 'none'; document.getElementById('tarifasNotFound').style.display = 'none'; document.getElementById('selectedFileName').innerHTML = ''; document.getElementById('analyzeBtn').disabled = true; document.getElementById('tarifasFileInput').value = ''; selectedTarifaFiles = []; extractedTarifasData = null; pendingChanges = []; }
+
+        async function applyTarifaUpdates() {
+            const selectedCheckboxes = document.querySelectorAll('.change-checkbox:checked');
+            if (selectedCheckboxes.length === 0) { showToast('Selecciona al menos un cambio para aplicar', 'warning'); return; }
+            const selectedChanges = Array.from(selectedCheckboxes).map(cb => { const idx = parseInt(cb.dataset.idx); return pendingChanges[idx]; });
+            if (!confirm(`¿Aplicar ${selectedChanges.length} cambios a las tarifas?`)) return;
+            showLoading(true);
+            try {
+                const changesByFile = {};
+                selectedChanges.forEach(change => { if (!changesByFile[change.fileKey]) { changesByFile[change.fileKey] = []; } changesByFile[change.fileKey].push(change); });
+                for (const [fileKey, fileChanges] of Object.entries(changesByFile)) {
+                    const dataToUpdate = fileKey === 'tarifas-gas.v2.json' ? tarifasGasData : (fileKey === 'comisiones.json' ? comisionesData : tarifasData);
+                    const touchedSuppliers = new Map();
+                    fileChanges.forEach(change => {
+                        const { comercializadora, producto, tipoTarifa, campo, newValue } = change;
+                        const markTouched = (key) => {
+                            const date = change.effectiveDate || new Date().toISOString().slice(0, 10);
+                            const previous = touchedSuppliers.get(key);
+                            touchedSuppliers.set(key, previous && previous > date ? previous : date);
+                        };
+                        if (change.kind === 'supplierCommissionsReplace') {
+                            dataToUpdate[comercializadora] = change.newSupplierCommissions;
+                            return;
+                        }
+
+                        if (change.kind === 'supplierProductsReplace') {
+                            if (!dataToUpdate[tipoTarifa]) dataToUpdate[tipoTarifa] = {};
+                            if (!dataToUpdate[tipoTarifa][comercializadora]) {
+                                dataToUpdate[tipoTarifa][comercializadora] = {
+                                    tarifaType: tipoTarifa,
+                                    metadata: { comercializadora },
+                                    productos: [],
+                                    activo: true
+                                };
+                            }
+                            dataToUpdate[tipoTarifa][comercializadora].tarifaType = tipoTarifa;
+                            dataToUpdate[tipoTarifa][comercializadora].productos = change.newProducts || [];
+                            dataToUpdate[tipoTarifa][comercializadora].activo = true;
+                            markTouched(`${tipoTarifa}::${comercializadora}`);
+                            return;
+                        }
+
+                        if (fileKey === 'tarifas-gas.v2.json') {
+                            const supplierBlock = dataToUpdate.GAS?.[comercializadora];
+                            const product = supplierBlock?.productos?.find(item => item.nombre === producto);
+                            if (!product) return;
+                            product[campo] = newValue;
+                            markTouched(`GAS::${comercializadora}`);
+                            return;
+                        }
+
+                        const supplierBlock = dataToUpdate[tipoTarifa]?.[comercializadora];
+                        const product = supplierBlock?.productos?.find(item => item.nombre === producto);
+                        if (!product) return;
+
+                        const [rootKey, periodo] = campo.split('.');
+                        if (!product[rootKey]) product[rootKey] = {};
+                        product[rootKey][periodo] = newValue;
+                        markTouched(`${tipoTarifa}::${comercializadora}`);
+                    });
+                    touchedSuppliers.forEach((date, key) => {
+                        const [tipoTarifa, comercializadora] = key.split('::');
+                        const supplierBlock = fileKey === 'tarifas-gas.v2.json'
+                            ? dataToUpdate.GAS?.[comercializadora]
+                            : dataToUpdate[tipoTarifa]?.[comercializadora];
+                        if (!supplierBlock) return;
+                        if (!supplierBlock.metadata) supplierBlock.metadata = {};
+                        const currentDate = supplierBlock.metadata.ultimaActualizacion;
+                        supplierBlock.metadata.ultimaActualizacion = currentDate && currentDate > date ? currentDate : date;
+                    });
+                    await saveToBackend(fileKey, dataToUpdate);
+                }
+                showToast(`✅ Se aplicaron ${selectedChanges.length} cambios`, 'success');
+                cancelTarifaUpdates();
+                await loadAllData();
+            } catch (err) { showToast('❌ Error al aplicar cambios: ' + err.message, 'error'); console.error(err); }
+            finally { showLoading(false); }
+        }
+
+        function fileToBase64(file) { return new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => { resolve(reader.result.split(',')[1]); }; reader.onerror = reject; reader.readAsDataURL(file); }); }
+    </script>
+  </body>
+</html>

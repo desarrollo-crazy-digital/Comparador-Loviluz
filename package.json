@@ -1,0 +1,43 @@
+{
+  "name": "comparador-loviluz",
+  "version": "2.0.0",
+  "description": "Comparador Loviluz - Dashboard React",
+  "scripts": {
+    "format:comisiones": "node tools/format-comisiones.mjs",
+    "dev": "vite",
+    "dev:api": "node server.js",
+    "dev:full": "node scripts/dev.mjs",
+    "build": "vite build",
+    "preview": "vite preview",
+    "ignis:update-prices": "node scripts/update-ignis-prices.mjs",
+    "eleia:s2026:update-prices": "node scripts/update-eleia-s2026-prices.mjs",
+    "supabase:consumption:upload": "node scripts/upload-consumption-to-supabase.mjs",
+    "supabase:consumption:clear": "node scripts/clear-consumption-from-supabase.mjs",
+    "supabase:consumption:migrate": "node scripts/migrate-consumption-between-supabase.mjs",
+    "supabase:sips:update-ps": "node scripts/update-puntos-suministro-from-ps.mjs",
+    "supabase:sips:compare-consumos": "node scripts/update-consumos-facturacion-from-csv.mjs --mode compare",
+    "supabase:sips:update-consumos": "node scripts/update-consumos-facturacion-from-csv.mjs --mode upload"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.93.0",
+    "apexcharts": "^5.6.0",
+    "framer-motion": "^11.0.8",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.0.0",
+    "lucide-react": "^0.344.0",
+    "pdf-parse": "^2.4.5",
+    "react": "^18.2.0",
+    "react-apexcharts": "^2.0.1",
+    "react-dom": "^18.2.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.1.4"
+  }
+}

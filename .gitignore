@@ -1,0 +1,43 @@
+node_modules/
+.DS_Store
+*.log
+.env
+.netlify/
+.vite/
+dist/
+legacy_backup/
+*.py
+__pycache__/
+*.pyc
+sips_*.sqlite
+sips_*.sqlite-*
+
+# ============================================
+# ARCHIVOS DE DESARROLLO (SÍ subir para despliegue)
+# ============================================
+# Se han eliminado las restricciones para permitir el build en Vercel
+# app.js
+# tarifas.v2.json
+# comisiones.json
+# styles.css
+# home-styles.css
+# build.js
+# server.js
+# package.json
+# PROTECCION.md
+# *.backup
+
+# Archivos locales que no deben ir al repo
+PROTECCION.md
+*.backup
+
+# ============================================
+# ARCHIVOS DE PRODUCCIÓN (SÍ subir)
+# Los archivos .min son los que van a Netlify
+# ============================================
+# app.min.js
+# tarifas.v2.min.json
+# comisiones.min.json
+# styles.min.css
+# home-styles.min.css
+# index.html

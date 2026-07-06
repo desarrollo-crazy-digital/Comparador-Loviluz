@@ -1,0 +1,94 @@
+{
+  "energiaPorKwh": {
+    "TOTAL ENERGIES": {
+      "prefixes": {
+        "SOUL": {
+          "mode": "factor",
+          "value": 0.085
+        }
+      }
+    },
+    "IGNIS": {
+      "products": {
+        "TERRA AIR FACIL": {
+          "mode": "factor",
+          "value": 0.085
+        },
+        "TERRA AIR FACIL ON": {
+          "mode": "factor",
+          "value": 0.085
+        }
+      },
+      "prefixes": {
+        "TERRA AIR": {
+          "mode": "factor",
+          "value": 0.085
+        }
+      }
+    },
+    "LOGOS": {
+      "contains": {
+        "LITE": {
+          "mode": "factor",
+          "value": 0.085
+        }
+      }
+    },
+    "ACCIONA": {
+      "default": {
+        "mode": "factor",
+        "value": 0.085
+      }
+    },
+    "CANALUZ": {
+      "default": {
+        "mode": "add",
+        "value": 0.025
+      }
+    },
+    "LOVILUZ": {
+      "products": {
+        "LOV VERANO V UNICA SSAA NO INCLUIDOS": {
+          "mode": "add",
+          "value": 0.0149
+        },
+        "LOV ME V UNICA SSAA NO INCLUIDOS": {
+          "mode": "add",
+          "value": 0.0149
+        },
+        "LOV ON V UNICA SSAA NO INCLUIDOS": {
+          "mode": "add",
+          "value": 0.0149
+        },
+        "LOV PLUS V UNICA SSAA NO INCLUIDOS": {
+          "mode": "add",
+          "value": 0.0149
+        },
+        "LOV US V SOLAR UNICA SSAA NO INCLUIDOS": {
+          "mode": "add",
+          "value": 0.0049
+        },
+        "LOV VERANO V PERIODOS SSAA NO INCLUIDOS": {
+          "mode": "add",
+          "value": 0.02
+        },
+        "LOV ME V PERIODOS SSAA NO INCLUIDOS": {
+          "mode": "add",
+          "value": 0.02
+        },
+        "LOV ON V PERIODOS SSAA NO INCLUIDOS": {
+          "mode": "add",
+          "value": 0.02
+        },
+        "LOV PLUS V PERIODOS SSAA NO INCLUIDOS": {
+          "mode": "add",
+          "value": 0.02
+        }
+      },
+      "default": {
+        "mode": "add",
+        "value": 0
+      }
+    }
+  }
+}
