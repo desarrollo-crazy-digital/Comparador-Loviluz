@@ -286,10 +286,10 @@ export default function ResultsModal({ results, formData, onClose, initialShowCo
                 >
 
 	                {/* 1. Header Summary */}
-	                <div className="bg-gradient-to-r from-[#00d4ff] via-[#0077ff] to-[#0017ff] text-white px-4 md:px-6 pt-3 md:pt-4 pb-4 md:pb-5 relative shrink-0 rounded-b-[2.25rem] z-30 shadow-2xl shadow-blue-950/25 overflow-hidden">
+	                <div className="bg-gradient-to-br from-[#ff8534] via-[#ff6b00] to-[#e85d00] text-white px-4 md:px-6 pt-3 md:pt-4 pb-4 md:pb-5 relative shrink-0 rounded-b-[2.25rem] z-30 shadow-2xl shadow-orange-900/25 overflow-hidden">
 	                    <div className="absolute inset-0 opacity-30 pointer-events-none">
 	                        <div className="absolute -top-24 -right-20 w-[420px] h-[420px] bg-white/15 rounded-full blur-3xl"></div>
-	                        <div className="absolute -bottom-28 -left-24 w-[520px] h-[520px] bg-cyan-200/15 rounded-full blur-3xl"></div>
+	                        <div className="absolute -bottom-28 -left-24 w-[520px] h-[520px] bg-amber-200/15 rounded-full blur-3xl"></div>
 	                    </div>
 	                    <div className="flex justify-between items-start mb-3 md:mb-4">
 	                        <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
@@ -298,7 +298,7 @@ export default function ResultsModal({ results, formData, onClose, initialShowCo
 	                            </div>
 	                            <div className="min-w-0">
 	                                <h2 className="font-bold text-sm md:text-lg leading-tight tracking-tight truncate">{formData.clientName || 'Cliente'}</h2>
-	                                <div className="text-blue-100/80 text-[10px] md:text-xs font-medium tracking-wide truncate">{formData.cups ? formData.cups : 'Sin CUPS'}</div>
+	                                <div className="text-orange-50/90 text-[10px] md:text-xs font-medium tracking-wide truncate">{formData.cups ? formData.cups : 'Sin CUPS'}</div>
 	                            </div>
 	                        </div>
 	                        <div className="flex gap-1.5 md:gap-2 flex-shrink-0">
@@ -531,7 +531,7 @@ export default function ResultsModal({ results, formData, onClose, initialShowCo
 	                                            idx === selectedOfferIndex ? 'ring-2 ring-blue-400/70 shadow-blue-200/40' : 'border border-slate-100 hover:border-slate-300'
 	                                        }`}
 	                                    >
-	                                        <div className={`h-1.5 ${idx === selectedOfferIndex ? 'bg-gradient-to-r from-[#0017ff] via-[#0077ff] to-[#00d4ff]' : 'bg-slate-100'}`} />
+	                                        <div className={`h-1.5 ${idx === selectedOfferIndex ? 'bg-gradient-to-r from-[#ee2e2c] via-[#ff6b00] to-[#feca0e]' : 'bg-slate-100'}`} />
 
 		                                        <div className="p-2 sm:p-3">
 		                                            {/* Desktop row layout */}

@@ -569,7 +569,7 @@ export default function CommercialDashboard({
               return (
                 <div
                   key={idx}
-                  className="flex items-center gap-4 p-4 bg-white/82 rounded-xl border border-sky-100 hover:shadow-md transition-shadow"
+                  className="flex items-center gap-4 p-4 bg-white/82 rounded-xl border border-orange-100 hover:shadow-md transition-shadow"
                 >
                   <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-slate-200 flex items-center justify-center text-slate-700 font-black">
                     {idx + 1}

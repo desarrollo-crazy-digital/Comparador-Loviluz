@@ -720,7 +720,7 @@ Escribe el número:`
                       <td className="py-3 px-2">
                         <div className="font-bold text-slate-800 truncate max-w-[220px]">{item.name}</div>
                         <div className="mt-1 h-1.5 w-36 rounded-full bg-slate-100 overflow-hidden">
-                          <div className="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" style={{ width: `${barWidth}%` }} />
+                          <div className="h-full rounded-full bg-gradient-to-r from-[#ff6b00] to-[#feca0e]" style={{ width: `${barWidth}%` }} />
                         </div>
                       </td>
                       <td className="py-3 px-2 text-center"><span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-lg font-black">{item.comparisons}</span></td>

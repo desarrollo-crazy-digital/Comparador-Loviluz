@@ -20,7 +20,7 @@ export async function generateComparePdf({ offers, showCommissions = true } = {}
 
   const today = new Date()
   const dateStr = today.toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' })
-  const logoUrl = absoluteUrl('/logo_soluciones_vivivan.webp')
+  const logoUrl = absoluteUrl('/LogoLoviluz.svg')
 
 	  const offerCards = selected.map((offer) => {
 	    const supplier = offer?.supplier || '—'
@@ -148,7 +148,7 @@ export async function generateComparePdf({ offers, showCommissions = true } = {}
       <div class="page">
         <div class="header">
           <div class="h-left">
-            <img class="logo" src="${logoUrl}" alt="Soluciones Vivivan" />
+            <img class="logo" src="${logoUrl}" alt="Loviluz" />
             <div class="title">
               <div class="title-k">COMPARATIVA</div>
               <div class="title-v">Ofertas seleccionadas</div>
@@ -156,13 +156,13 @@ export async function generateComparePdf({ offers, showCommissions = true } = {}
             </div>
           </div>
           <div class="h-right">
-            <div class="pill">Comparador Vivivan PRO</div>
+            <div class="pill">Comparador Loviluz PRO</div>
           </div>
         </div>
         <div class="grid">
           ${offerCards}
         </div>
-        <div class="footer">Cálculo realizado por SOLUCIONES VIVIVAN S.L.</div>
+        <div class="footer">Cálculo realizado por LOVILUZ</div>
       </div>
     </body>
   </html>`

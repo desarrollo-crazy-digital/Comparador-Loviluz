@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import ComparadorForm from './components/ComparadorForm'
 import AdminDashboard from './components/AdminDashboard'
 import CommercialDashboard from './components/CommercialDashboard'
-import CommercialAvatar from './components/CommercialAvatar'
 import { Lock, ArrowRight, Zap, ShieldCheck, Award, TrendingUp, Eye, EyeOff } from 'lucide-react'
 import { gaClearUser, gaEvent, gaIdentifyCommercial } from './utils/analytics'
 
@@ -186,25 +185,25 @@ function App() {
   if (viewState === 'app' || viewState === 'admin' || viewState === 'commercial-dashboard') {
     return (
       <div className={['min-h-[100dvh] flex flex-col app-electric text-slate-900 font-sans selection:bg-blue-100', isDashboardView ? '' : 'overflow-hidden'].join(' ')}>
+        <div className="bg-grid-container"><div className="bg-grid-scroller" /></div>
 
-        
         {/* Header (dashboards only). The Comparador view uses the sticky header inside the form. */}
         {isDashboardView && (
           <header className="sticky top-0 w-full bg-white/80 backdrop-blur-xl z-30 border-b border-white/60 shadow-sm relative">
             <div className="pointer-events-none absolute inset-0 opacity-60">
-              <div className="absolute inset-x-0 -top-10 h-16 bg-gradient-to-r from-cyan-200/40 via-blue-200/40 to-indigo-200/40 blur-2xl" />
+              <div className="absolute inset-x-0 -top-10 h-16 bg-gradient-to-r from-orange-200/30 via-amber-200/30 to-yellow-200/30 blur-2xl" />
             </div>
             <div className="max-w-7xl mx-auto px-3 md:px-6">
               <div className="h-12 md:h-14 flex items-center justify-between gap-2 relative">
                 <div className="flex items-center gap-1.5 md:gap-2 min-w-0 flex-1">
                   <img 
-                    src="/logo_soluciones_vivivan.webp" 
-                    alt="Soluciones Vivivan" 
+                    src="/LogoLoviluz.svg" 
+                    alt="Loviluz" 
                     className="h-7 md:h-9 w-auto object-contain flex-shrink-0 drop-shadow-sm"
                   />
                   <div className="hidden sm:block h-6 w-px bg-slate-200 flex-shrink-0"></div>
                   <div className="flex flex-col min-w-0">
-                    <span className="font-extrabold text-xs md:text-sm text-slate-900 leading-tight truncate tracking-wide">Comparador Vivivan</span>
+                    <span className="font-extrabold text-xs md:text-sm text-slate-900 leading-tight truncate tracking-wide">Comparador Loviluz</span>
                     <span className="hidden md:block text-[10px] text-slate-500 font-black uppercase tracking-[0.18em]">Pro</span>
                   </div>
                 </div>
@@ -235,12 +234,6 @@ function App() {
                     className="inline-flex items-center gap-2 text-[9px] md:text-xs font-semibold text-slate-600 hover:text-red-600 transition-colors px-2 md:px-3 py-1 rounded-md hover:bg-red-50 flex-shrink-0 max-w-[12rem]"
                     title="Salir"
                   >
-                    <CommercialAvatar
-                      commercialCode={commercialCode}
-                      commercialName={commercialName}
-                      size={24}
-                      className="rounded-lg shadow-none border-blue-200/70"
-                    />
                     <span className="truncate">{commercialName || commercialCode || 'Salir'}</span>
                     <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
                   </button>
@@ -285,19 +278,7 @@ function App() {
         'landing-electric'
       ].join(' ')}
     >
-        <div className="landing-energy" aria-hidden="true">
-          <div className="landing-energy__grid" />
-          <div className="landing-energy__orbs">
-            <div className="landing-energy__orb landing-energy__orb--1" />
-            <div className="landing-energy__orb landing-energy__orb--2" />
-            <div className="landing-energy__orb landing-energy__orb--3" />
-          </div>
-          <svg className="landing-energy__svg" viewBox="0 0 1200 600" preserveAspectRatio="none">
-            <path d="M0,420 C180,320 260,520 440,420 C620,320 700,520 880,420 C1040,330 1120,470 1200,420" />
-            <path d="M0,280 C160,200 300,360 460,280 C640,200 760,360 920,280 C1060,220 1130,320 1200,280" />
-            <path d="M0,150 C210,70 320,250 520,150 C720,50 840,240 1020,150 C1100,110 1140,180 1200,150" />
-          </svg>
-        </div>
+        <div className="bg-grid-container"><div className="bg-grid-scroller" /></div>
 
         <div className="w-full max-w-4xl mx-auto px-6 py-12 relative z-10">
 
@@ -310,15 +291,15 @@ function App() {
               {/* Logo & Title */}
               <div className="space-y-3">
                   <img 
-                      src="/logo_soluciones_vivivan.webp" 
-                      alt="Soluciones Vivivan" 
+                      src="/LogoLoviluz.svg" 
+                      alt="Loviluz" 
                       className="w-[21.6rem] md:w-[28.8rem] h-auto mx-auto object-contain"
                   />
                   <div>
                       <h1 className="text-4xl md:text-6xl font-extrabold landing-title leading-tight">
-                          Comparador Vivivan
+                          Comparador Loviluz
                       </h1>
-                      <p className="text-[10px] font-semibold text-white/80 uppercase tracking-[0.2em] mt-1 drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]">
+                      <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-[0.2em] mt-1">
                           Versión Pro
                       </p>
                   </div>
@@ -327,21 +308,21 @@ function App() {
               {/* CTA */}
               <button
                   onClick={() => setViewState('login')}
-                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 md:px-10 md:py-4 bg-white text-blue-800 font-extrabold text-base md:text-lg rounded-2xl border border-white/60 shadow-2xl shadow-blue-950/30 hover:bg-white/95 focus:outline-none focus:ring-4 focus:ring-white/45 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 md:px-10 md:py-4 bg-gradient-to-r from-[#ee2e2c] via-[#ff6b00] to-[#feca0e] text-white font-extrabold text-base md:text-lg rounded-2xl border border-white/30 shadow-xl shadow-blue-950/10 hover:brightness-110 focus:outline-none focus:ring-4 focus:ring-blue-200/40 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
               >
-                  <span className="drop-shadow-[0_1px_0_rgba(255,255,255,0.35)]">Acceder al Sistema</span>
+                  <span>Acceder al Sistema</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" strokeWidth={2.5} />
               </button>
 
               {/* Footer */}
               <div className="flex items-center justify-center gap-2 pt-8 opacity-85 hover:opacity-100 transition-opacity">
-                  <span className="text-xs font-semibold text-white/90 uppercase tracking-wide drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]">
+                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
                     Desarrollado por Crazy Digital SL
                   </span>
                   <img 
                       src="/crazy_digital_logo.png" 
                       alt="Crazy Digital" 
-                      className="h-4 w-auto opacity-95 brightness-0 invert drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]"
+                      className="h-4 w-auto opacity-60"
                   />
               </div>
           </div>
@@ -360,11 +341,11 @@ function App() {
               />
 
               <div className="relative max-w-md w-full mx-auto" onClick={(e) => e.stopPropagation()}>
-                <div className="relative rounded-[28px] p-[1px] bg-gradient-to-br from-[#0017ff]/70 via-[#00d4ff]/40 to-white/50 shadow-2xl shadow-blue-950/35">
+                <div className="relative rounded-[28px] p-[1px] bg-gradient-to-br from-[#ee2e2c]/70 via-[#ff6b00]/40 to-white/50 shadow-2xl shadow-blue-950/35">
                   <div className="relative overflow-hidden rounded-[27px] login-card">
                     <div className="login-card__texture" aria-hidden="true" />
 
-                    <div className="h-2 bg-gradient-to-r from-[#0017ff] via-[#0077ff] to-[#00d4ff]"></div>
+                    <div className="h-2 bg-gradient-to-r from-[#ee2e2c] via-[#ff6b00] to-[#feca0e]"></div>
                     
                     <div className="p-8 relative">
                         <button 
@@ -377,7 +358,7 @@ function App() {
                         
                         <div className="mb-6">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-blue-100 text-blue-700 text-[11px] font-bold uppercase tracking-[0.18em] shadow-sm">
-                              <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(0,200,255,0.5)]" />
+                              <span className="w-2 h-2 rounded-full bg-orange-400 shadow-[0_0_12px_rgba(255,107,0,0.5)]" />
                               Acceso Seguro
                             </div>
                             <h2 className="mt-3 text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -432,7 +413,7 @@ function App() {
                             <button
                                 type="submit"
                                 disabled={loading || !commercialCode}
-                                className={`w-full flex items-center justify-center gap-2 py-4 px-4 rounded-2xl text-sm font-extrabold text-white bg-gradient-to-r from-[#000fcb] via-[#005bff] to-[#00e6ff] border border-white/35 shadow-[0_22px_70px_rgba(0,0,0,0.35)] hover:brightness-110 focus:outline-none focus:ring-4 focus:ring-white/30 transition-all ${
+                                className={`w-full flex items-center justify-center gap-2 py-4 px-4 rounded-2xl text-sm font-extrabold text-white bg-gradient-to-r from-[#ee2e2c] via-[#ff6b00] to-[#feca0e] border border-white/35 shadow-[0_22px_70px_rgba(0,0,0,0.35)] hover:brightness-110 focus:outline-none focus:ring-4 focus:ring-white/30 transition-all ${
                                     loading || !commercialCode ? 'opacity-50 cursor-not-allowed' : 'hover:-translate-y-0.5 active:translate-y-0'
                                 }`}
                             >

@@ -86,10 +86,10 @@ export async function generatePDF(formData, selectedResult, { commercialCode, co
         const supplierData = supplierBranding[supplierKey] || {};
         
         const branding = {
-            primaryColor: supplierData.primaryColor || '#0056b3',
+            primaryColor: supplierData.primaryColor || '#ff6b00',
             secondaryColor: supplierData.secondaryColor || '#1e293b',
             // In production (Vercel), only `/public/*` is served. Use a public logo as fallback.
-            logo: supplierData.logo || '/logo_soluciones_vivivan.webp',
+            logo: supplierData.logo || '/LogoLoviluz.svg',
             name: supplierData.name || selectedResult.supplier || 'Comercializadora'
         };
         // Normalize logo path and make it absolute for html2canvas inside the iframe.
@@ -860,7 +860,7 @@ export async function generatePDF(formData, selectedResult, { commercialCode, co
         pdf.addImage(imgData, 'JPEG', positionX, positionY, imgWidth, imgHeight);
 
         // Firma lateral (más fiable que hacerlo en HTML por html2canvas)
-        const firmaText = 'Cálculo realizado por SOLUCIONES VIVIVAN S.L.';
+        const firmaText = 'Cálculo realizado por LOVILUZ';
         pdf.setFont('helvetica', 'italic');
         pdf.setFontSize(7);
         pdf.setTextColor(90, 90, 90);

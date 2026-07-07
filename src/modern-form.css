@@ -22,10 +22,10 @@
 /* Toggle Switch */
 .toggle-checkbox:checked {
     right: 0;
-    border-color: #3b82f6;
+    border-color: #ff6b00;
 }
 .toggle-checkbox:checked + .toggle-label {
-    background-color: #3b82f6;
+    background-color: #ff6b00;
 }
 
 /* iPad Pro: keep "tablet" layout (avoid 3-column desktop grid) */

@@ -7,9 +7,9 @@ function hashToHue(input) {
   return h % 360
 }
 
-function clampHueToBlue(h) {
-  // Mantener el fallback dentro de la paleta azul/cian (evitar rojos/amarillos)
-  return 195 + (Math.abs(h) % 35) // 195..229
+function clampHueToOrange(h) {
+  // Mantener el fallback dentro de la paleta naranja/amarillo de Loviluz (15..45)
+  return 15 + (Math.abs(h) % 30) // 15..45
 }
 
 function toInitials(label) {
@@ -32,7 +32,7 @@ function toSlug(value) {
 export default function CommercialAvatar({ commercialCode = '', commercialName = '', size = 44, className = '' }) {
   const label = (commercialName || '').trim() || (commercialCode || '').trim() || '—'
   const initials = useMemo(() => toInitials(label), [label])
-  const hue = useMemo(() => clampHueToBlue(hashToHue(commercialCode || label)), [commercialCode, label])
+  const hue = useMemo(() => clampHueToOrange(hashToHue(commercialCode || label)), [commercialCode, label])
   const normalizedCode = (commercialCode || '').trim()
   const hideCodeInLogoUrl = ['1', 'true', 'yes', 'on'].includes(
     String(import.meta.env.VITE_HIDE_COMMERCIAL_CODE_IN_LOGO_URL ?? 'true').trim().toLowerCase()
@@ -68,7 +68,7 @@ export default function CommercialAvatar({ commercialCode = '', commercialName =
   return (
     <div
       className={[
-        'rounded-2xl overflow-hidden border border-blue-200/70 bg-white shadow-[0_12px_26px_rgba(0,77,255,0.16)] flex items-center justify-center flex-shrink-0',
+        'rounded-2xl overflow-hidden border border-blue-200/70 bg-white shadow-[0_12px_26px_rgba(255,107,0,0.16)] flex items-center justify-center flex-shrink-0',
         className
       ].join(' ')}
       style={{ width: size, height: size, background: bg }}

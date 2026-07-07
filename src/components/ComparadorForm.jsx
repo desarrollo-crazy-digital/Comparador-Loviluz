@@ -3,7 +3,6 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { LogOut, Sparkles, Zap, Flame, FileText, BarChart3, ChevronRight, RefreshCw, User, FileDigit, Home, Building2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ResultsModal from './ResultsModal'
-import CommercialAvatar from './CommercialAvatar'
 import { gaEvent } from '../utils/analytics'
 import { generatePDF } from '../utils/pdfGenerator'
 import { clearPdfDownloads, getPdfDownloads } from '../utils/pdfDownloadStore'
@@ -683,24 +682,24 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
             )}
 
             <div className="w-full max-w-7xl mx-auto">
-                <div className="relative rounded-3xl p-[1px] bg-gradient-to-br from-[#0017ff]/25 via-[#00d4ff]/12 to-white/70 shadow-2xl shadow-blue-950/10">
+                <div className="relative rounded-3xl p-[1px] bg-gradient-to-br from-white/80 via-white/60 to-white/40 shadow-2xl shadow-slate-900/5">
                     <div className="bg-white/75 backdrop-blur-xl rounded-[23px] border border-white/60">
-                        {/* Sticky header (main) */}
-                        <div className="sticky top-0 z-30 rounded-t-[23px] bg-gradient-to-r from-[#0017ff] via-[#0077ff] to-[#00d4ff] text-white shadow-[0_14px_50px_rgba(2,8,23,0.25)]">
-                            <div className="px-5 md:px-8 lg:px-10 pt-[calc(env(safe-area-inset-top)+1.25rem)] pb-5 md:pb-6">
+                        {/* Sticky header (glass navbar CRM-style) */}
+                        <div className="sticky top-0 z-30 rounded-t-[23px] bg-white/88 backdrop-blur-[22px] saturate-[180%] border-b border-white/60 shadow-[0_4px_24px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.85)]">
+                            <div className="px-5 md:px-8 lg:px-10 py-4 md:py-5">
                                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                                     <div className="min-w-0 flex items-center gap-4">
                                         <img
-                                            src="/logo_soluciones_vivivan.webp"
-                                            alt="Soluciones Vivivan"
-                                            className="h-16 md:h-20 lg:h-24 w-auto object-contain flex-shrink-0 drop-shadow-[0_16px_38px_rgba(0,0,0,0.32)]"
+                                            src="/LogoLoviluz.svg"
+                                            alt="Loviluz"
+                                            className="h-12 md:h-14 lg:h-16 w-auto object-contain flex-shrink-0"
                                         />
-                                        <div className="hidden sm:block h-14 md:h-16 w-px bg-white/25 flex-shrink-0" aria-hidden="true" />
+                                        <div className="hidden sm:block h-10 md:h-12 w-px bg-slate-200 flex-shrink-0" aria-hidden="true" />
                                         <div className="min-w-0">
-                                            <div className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.26em] text-white/85">
-                                                Comparador Vivivan
+                                            <div className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.26em] text-slate-500">
+                                                Comparador Loviluz
                                             </div>
-                                            <div className="text-2xl md:text-3xl font-extrabold leading-[1.05] drop-shadow-[0_12px_30px_rgba(0,0,0,0.28)]">
+                                            <div className="text-xl md:text-2xl font-extrabold leading-[1.05] text-slate-900">
                                                 Pro
                                             </div>
                                         </div>
@@ -709,20 +708,21 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                     <div className="min-w-0 flex flex-col items-end">
                                         <div className="flex items-center justify-end gap-3 w-full">
                                             <div className="min-w-0 text-right">
-                                                <div className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.26em] text-white/80">
+                                                <div className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.26em] text-slate-500">
                                                     Comercial
                                                 </div>
-                                                <div className="text-lg md:text-xl font-extrabold truncate drop-shadow-[0_12px_30px_rgba(0,0,0,0.28)] max-w-[14rem] md:max-w-[22rem] ml-auto">
+                                                <div className="text-lg md:text-xl font-extrabold truncate text-slate-900 max-w-[14rem] md:max-w-[22rem] ml-auto">
                                                     {commercialName || commercialCode || '—'}
                                                 </div>
                                             </div>
 
-                                            <CommercialAvatar
-                                                commercialCode={commercialCode}
-                                                commercialName={commercialName}
-                                                size={44}
-                                                className="flex"
-                                            />
+                                            <div
+                                                className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#ff8534] to-[#ff6b00] border border-white/60 shadow-[0_12px_26px_rgba(255,107,0,0.16)] flex items-center justify-center flex-shrink-0"
+                                                aria-label={commercialName || commercialCode || 'Comercial'}
+                                                title={commercialName || commercialCode || 'Comercial'}
+                                            >
+                                                <User size={20} className="text-white" strokeWidth={2.2} />
+                                            </div>
                                         </div>
 
                                         <div className="mt-4 flex items-center justify-end gap-2">
@@ -730,7 +730,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                                 <button
                                                     type="button"
                                                     onClick={() => setShowPdfHistory(true)}
-                                                    className="header-history-btn inline-flex items-center px-3.5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest bg-white/10 border border-white/25 hover:bg-white/20 transition"
+                                                    className="header-history-btn inline-flex items-center px-3.5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition shadow-sm"
                                                 >
                                                     Historial PDF
                                                 </button>
@@ -739,7 +739,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                                 <button
                                                     type="button"
                                                     onClick={onOpenDashboard}
-                                                    className="inline-flex items-center px-3.5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest bg-white/10 border border-white/25 hover:bg-white/20 transition"
+                                                    className="inline-flex items-center px-3.5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition shadow-sm"
                                                 >
                                                     Estadísticas
                                                 </button>
@@ -748,7 +748,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                                 <button
                                                     type="button"
                                                     onClick={onOpenAdmin}
-                                                    className="inline-flex items-center px-3.5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest bg-white/10 border border-white/25 hover:bg-white/20 transition"
+                                                    className="inline-flex items-center px-3.5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition shadow-sm"
                                                 >
                                                     Admin
                                                 </button>
@@ -757,7 +757,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                                 <button
                                                     type="button"
                                                     onClick={onLogout}
-                                                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest bg-red-500/15 border border-red-200/40 text-white hover:bg-red-500/25 transition shadow-[0_10px_25px_rgba(220,38,38,0.20)]"
+                                                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest bg-red-50 border border-red-200 text-red-600 hover:bg-red-100 transition shadow-sm"
                                                     title="Salir"
                                                 >
                                                     <LogOut size={16} />
@@ -784,7 +784,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                     )}
                                     {isUploading && (
                                         <div className="flex items-center gap-2 min-w-0">
-                                            <div className="text-[11px] lg:text-[13px] font-bold text-cyan-700 truncate">
+                                            <div className="text-[11px] lg:text-[13px] font-bold text-orange-600 truncate">
                                                 Analizando factura… {uploadProgress}%
                                             </div>
                                         </div>
@@ -803,7 +803,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                         type="button"
                                         onClick={handleUploadClick}
                                         disabled={isUploading}
-                                        className="inline-flex items-center gap-2 px-5 md:px-6 py-3 md:py-3.5 rounded-2xl text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white bg-gradient-to-r from-emerald-500 via-cyan-500 to-blue-600 border border-white/30 shadow-xl shadow-emerald-500/25 hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 transition disabled:opacity-60 disabled:hover:translate-y-0"
+                                        className="inline-flex items-center gap-2 px-5 md:px-6 py-3 md:py-3.5 rounded-xl text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white bg-gradient-to-br from-[#ff8534] via-[#ff6b00] to-[#e85d00] border-none shadow-[0_4px_14px_rgba(255,107,0,0.3),inset_0_1px_0_rgba(255,255,255,0.25)] hover:brightness-105 hover:-translate-y-0.5 active:scale-[0.97] transition disabled:opacity-60 disabled:hover:translate-y-0"
                                     >
                                         <Sparkles size={14} />
                                         {isUploading ? 'Leyendo…' : 'Leer factura'}
@@ -822,7 +822,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                         className="h-1.5 bg-slate-200/60 overflow-hidden"
                                     >
                                         <motion.div
-                                            className="h-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 relative"
+                                            className="h-full bg-gradient-to-r from-[#feca0e] via-[#ff8534] to-[#ff6b00] relative"
                                             style={{ width: `${uploadProgress}%` }}
                                             transition={{ duration: 0.15, ease: 'easeOut' }}
                                         >
@@ -839,7 +839,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                 {/* Cliente */}
                                 <div className="col-span-12 lg:col-span-5 rounded-2xl bg-white/60 border border-white/70 p-4 comparador-form-panel">
                                     <h3 className="text-[11px] lg:text-[13px] font-black text-slate-800 uppercase tracking-widest flex items-center gap-2 mb-3">
-                                        <span className="w-7 h-7 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center text-white shadow-lg shadow-blue-600/20">
+                                        <span className="w-7 h-7 rounded-xl bg-gradient-to-br from-[#ff8534] to-[#ff6b00] flex items-center justify-center text-white shadow-lg shadow-orange-500/20">
                                             <User size={14} />
                                         </span>
                                         Cliente
@@ -912,7 +912,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                                             onClick={() => setFormData({ ...formData, region: r.id })}
                                                             className={`flex-1 py-2 rounded-lg text-[10px] lg:text-[12px] font-black uppercase transition-all ${
                                                                 formData.region === r.id
-                                                                    ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md shadow-blue-500/20'
+                                                                    ? 'bg-gradient-to-r from-[#ff8534] to-[#ff6b00] text-white shadow-md shadow-orange-500/20'
                                                                     : 'text-slate-600 hover:text-blue-700 hover:bg-white'
                                                             }`}
                                                         >
@@ -930,7 +930,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                                         onClick={() => setFormData({ ...formData, energyType: 'electricidad' })}
                                                         className={`py-2 rounded-lg text-[10px] lg:text-[12px] font-black uppercase transition-all ${
                                                             formData.energyType === 'electricidad'
-                                                                ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md shadow-blue-500/20'
+                                                                ? 'bg-gradient-to-r from-[#ff8534] to-[#ff6b00] text-white shadow-md shadow-orange-500/20'
                                                                 : 'text-slate-600 hover:text-blue-700 hover:bg-white'
                                                         }`}
                                                     >
@@ -956,7 +956,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                 {/* Técnico */}
                                 <div className="col-span-12 lg:col-span-4 rounded-2xl bg-white/50 border border-white/70 p-4 comparador-form-panel">
                                     <h3 className="text-[11px] lg:text-[13px] font-black text-slate-800 uppercase tracking-widest flex items-center gap-2 mb-3">
-                                        <span className="w-7 h-7 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center text-white shadow-lg shadow-blue-600/20">
+                                        <span className="w-7 h-7 rounded-xl bg-gradient-to-br from-[#ff8534] to-[#ff6b00] flex items-center justify-center text-white shadow-lg shadow-orange-500/20">
                                             <Zap size={14} />
                                         </span>
                                         Técnico
@@ -1144,7 +1144,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                                         onClick={() => setFormData({ ...formData, clientType: segment.id })}
                                                         className={`min-w-0 h-9 flex items-center justify-center gap-1.5 px-2.5 rounded-lg text-[10px] lg:text-[11px] font-black uppercase tracking-normal transition-all ${
                                                             active
-                                                                ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md shadow-blue-500/20'
+                                                                ? 'bg-gradient-to-r from-[#ff8534] to-[#ff6b00] text-white shadow-md shadow-orange-500/20'
                                                                 : 'text-slate-600 hover:text-blue-700 hover:bg-white'
                                                         }`}
                                                         title={segment.label}
@@ -1162,7 +1162,7 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                 {/* Factura + acciones */}
                                 <div className="col-span-12 lg:col-span-3 rounded-2xl bg-white/60 border border-white/70 p-4 flex flex-col comparador-form-panel">
                                     <h3 className="text-[11px] lg:text-[13px] font-black text-slate-800 uppercase tracking-widest flex items-center gap-2 mb-3">
-                                        <span className="w-7 h-7 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-400 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20">
+                                        <span className="w-7 h-7 rounded-xl bg-gradient-to-br from-[#ff8534] to-[#ff6b00] flex items-center justify-center text-white shadow-lg shadow-orange-500/20">
                                             <FileDigit size={14} />
                                         </span>
                                         Factura
@@ -1278,27 +1278,25 @@ export default function ComparadorForm({ commercialCode, commercialName, isAdmin
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div className="mt-3 pt-3 border-t border-white/70 flex flex-wrap items-center gap-2">
-                                        <button
-                                            onClick={resetForm}
-                                            className="text-[10px] lg:text-[12px] font-black text-slate-700 uppercase tracking-widest bg-white/70 hover:bg-white border border-white/80 px-3 py-2 rounded-xl transition shadow-sm"
-                                        >
-                                            <span className="inline-flex items-center gap-2">
-                                                <RefreshCw size={12} /> Limpiar
-                                            </span>
-                                        </button>
-
-                                        <button
-                                            onClick={handleCalculate}
-                                            disabled={isCalculating || !isCaeValid}
-                                            title={!isCaeValid ? 'Completa el Cons. Anual (kWh) para poder calcular' : 'Calcular'}
-                                            className="ml-auto bg-gradient-to-r from-[#0017ff] via-[#0077ff] to-[#00d4ff] text-white px-4 py-2 rounded-xl text-[11px] lg:text-[13px] font-extrabold uppercase tracking-widest shadow-xl shadow-blue-700/25 hover:brightness-110 transition-all flex items-center gap-2 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
-                                        >
-                                            {isCalculating ? 'Calculando…' : 'Calcular'} <ChevronRight size={16} />
-                                        </button>
-                                    </div>
                                 </div>
+                            </div>
+
+                            <div className="mt-4 pt-4 border-t border-white/70 flex flex-wrap items-center gap-3">
+                                <button
+                                    onClick={resetForm}
+                                    className="inline-flex items-center gap-2 text-[10px] lg:text-[12px] font-black uppercase tracking-widest bg-white text-[#ff6b00] border-none px-5 py-3 rounded-xl transition shadow-[0_1px_6px_rgba(0,0,0,0.08)] hover:bg-slate-50 hover:shadow-[0_3px_8px_rgba(0,0,0,0.1)] active:scale-[0.97]"
+                                >
+                                    <RefreshCw size={13} /> Limpiar
+                                </button>
+
+                                <button
+                                    onClick={handleCalculate}
+                                    disabled={isCalculating || !isCaeValid}
+                                    title={!isCaeValid ? 'Completa el Cons. Anual (kWh) para poder calcular' : 'Calcular'}
+                                    className="ml-auto inline-flex items-center gap-2 bg-gradient-to-br from-[#ff8534] via-[#ff6b00] to-[#e85d00] text-white px-6 py-3 rounded-xl text-[11px] lg:text-[13px] font-extrabold uppercase tracking-widest shadow-[0_4px_14px_rgba(255,107,0,0.3),inset_0_1px_0_rgba(255,255,255,0.25)] hover:brightness-105 hover:-translate-y-px transition-all active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed"
+                                >
+                                    {isCalculating ? 'Calculando…' : 'Calcular'} <ChevronRight size={16} />
+                                </button>
                             </div>
                         </div>
                         </div>
