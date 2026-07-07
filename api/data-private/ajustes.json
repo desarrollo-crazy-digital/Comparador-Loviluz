@@ -1,51 +1,5 @@
 {
   "energiaPorKwh": {
-    "TOTAL ENERGIES": {
-      "prefixes": {
-        "SOUL": {
-          "mode": "factor",
-          "value": 0.085
-        }
-      }
-    },
-    "IGNIS": {
-      "products": {
-        "TERRA AIR FACIL": {
-          "mode": "factor",
-          "value": 0.085
-        },
-        "TERRA AIR FACIL ON": {
-          "mode": "factor",
-          "value": 0.085
-        }
-      },
-      "prefixes": {
-        "TERRA AIR": {
-          "mode": "factor",
-          "value": 0.085
-        }
-      }
-    },
-    "LOGOS": {
-      "contains": {
-        "LITE": {
-          "mode": "factor",
-          "value": 0.085
-        }
-      }
-    },
-    "ACCIONA": {
-      "default": {
-        "mode": "factor",
-        "value": 0.085
-      }
-    },
-    "CANALUZ": {
-      "default": {
-        "mode": "add",
-        "value": 0.025
-      }
-    },
     "LOVILUZ": {
       "products": {
         "LOV VERANO V UNICA SSAA NO INCLUIDOS": {
